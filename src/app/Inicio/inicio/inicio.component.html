@@ -1,0 +1,47 @@
+<!--<h4>Petición</h4>
+<div class ="btn-group" role="group" aria-label="Basic example">
+<button type="button" class="btn btn-secondary" (click)="get()">Get</button>
+
+</div>
+<hr>
+
+<h4>Resultado</h4>
+ <pre>{{resultadoPeticion|json}}</pre> 
+<div class="container" *ngIf="NumLibros" >
+    <div style ="display: flex;">
+        <div>Libros</div>
+        <div>{{NumLibros}}</div>
+    </div>
+</div>-->
+<button type="button" class="btn btn-secondary" (click)="getDatosInicio()">Get</button>
+<div class="row" align="center">
+    <div class="col-md-2">
+        <h1>BIBLIOTECA</h1>
+        <div *ngIf="NumLibros">
+            <fieldset>
+                <legend>Libros</legend>
+                <span class="textogrande">
+                    {{NumLibros}}
+                </span>
+            </fieldset>
+        </div>
+
+        <div *ngIf="NumAutores">
+            <fieldset>
+                <legend>Autores</legend>
+                <span class="textogrande">
+                    {{NumAutores}}
+                </span>
+            </fieldset>
+        </div>
+        <div *ngIf="Numeditoriales">
+            <fieldset>
+                <legend>Editoriales</legend>
+                <span class="textogrande">
+                    {{Numeditoriales}}
+                </span>
+            </fieldset>
+        </div>
+
+    </div>
+</div>
