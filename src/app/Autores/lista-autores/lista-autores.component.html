@@ -1,9 +1,31 @@
-<!-- <button type="button" class="btn btn-secondary" (click)="getautores()">Autores</button> -->
-<h4>Autores</h4>
+
 <div style="margin-top: 1rem;">
     <fieldset>
         <legend>Autores</legend>
     </fieldset> 
+
+    <div id="Iniciales" align="center" style="padding-left: 9%;">
+        <fieldset>
+           
+            <ul id="Inicial" align="center">
+              
+                        <li class="horizontal" style="color:darkred;"  *ngFor="let letra of listaLetras; let index = index"  (click)="pinchaLetra(letra) ">
+                            <a>
+                                {{letra}} 
+                            </a>
+                        </li>
+
+            </ul>
+     
+        </fieldset>
+    </div>
+
+
+    <input type="checkbox" id="chk1" (change)="onCheckboxChange($event)">
+    <label for="chk1" style="padding-left: 1em;"> Ordenar por Apellido</label><br>
+
+    <div style="width:100%; padding-bottom:1em" align="center"><i class='fas fa-user-circle fa-border fa-5x'></i><br /></div>
+
     <div  *ngIf="resultadoAutores">
         <table id="tLibros" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
             <tr>
@@ -13,7 +35,7 @@
                 <th style="width:30.00%"></th>
             </tr>
             
-                <tr *ngFor="let autor of resultadoAutores">
+                <tr *ngFor="let autor of resultadoAutores" (click)="selRow(autor.id)">
                     <td>{{autor.id}}</td>
                     <td>{{autor.nombreAutor}}</td>
                     <td>{{autor.nombre}}</td>

@@ -10,13 +10,17 @@ import { AutorDTO } from '../autor/autorDTO';
 })
 export class ListaAutoresComponent implements OnInit {
   resultadoAutores: AutorDTO[];
+  listaLetras:string[] = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+  checked :string = "n"
+  letra :string = "A"
   constructor(public accesoApiService:AccesoApiService) { }
 
   ngOnInit(): void {
-    this.getautores();
+    //this.getautores("N");
+    this.pinchaLetra("A")
   }
-  getautores(){
-     this.accesoApiService.getAutores().subscribe((respuesta:HttpResponse<AutorDTO[]>) => {
+  getautores(tipo:string){
+     this.accesoApiService.getAutores(tipo).subscribe((respuesta:HttpResponse<AutorDTO[]>) => {
                                      this.resultadoAutores = respuesta.body; },error => console.log(error));
      //this.accesoApiService.getAutores().subscribe(data => this.resultadoAutores = data);
      
@@ -25,8 +29,36 @@ export class ListaAutoresComponent implements OnInit {
        console.log(this.resultadoAutores);
      }
      else
-     {
+     { 
        console.log("No devuelve nada");
      }
    }
+
+   pinchaLetra(letra:string){
+    console.log(letra);
+    console.log(this.checked);
+    this.accesoApiService.getAutoresLetra(this.checked,letra).subscribe((respuesta:HttpResponse<AutorDTO[]>) => {
+      this.resultadoAutores = respuesta.body; },error => console.log(error));
+      this.letra = letra;
+
+   }
+   
+   selRow(id:number){
+     console.log(id);
+   }
+
+   onCheckboxChange(e:any) {
+     
+    if (e.target.checked) 
+    {
+      this.checked = "a"
+ 
+    } 
+    else 
+    {
+      this.checked = "n"
+    }
+    this.pinchaLetra(this.letra);
+  }
+
 }
