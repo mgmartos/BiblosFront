@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from "rxjs";
-import { AutorDTO } from './Autores/autor/autorDTO';
+
 import { environment } from 'src/environments/environment';
+import { AutorDTO, LibroDTO } from './Libros/LibroDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,16 @@ export class AccesoApiService {
     let params = new HttpParams();
     
     return this.http.get<AutorDTO[]>(this.apiURL + 'autoresLetra?tipo=' + tipo + '&letra=' + letra ,{observe: 'response', params});
+}
+
+getLibrosAutor(id:number): Observable<any>{
+  let params = new HttpParams();
+  return this.http.get<LibroDTO[]>(this.apiURL + 'librosautor?idautor=' + id ,{observe: 'response', params});
+}
+
+getLibrosLetra(letra:string): Observable<any>{
+  let params = new HttpParams();
+  return this.http.get<LibroDTO[]>(this.apiURL + 'librosLetra?letra=' + letra ,{observe: 'response', params});
 }
 
 }

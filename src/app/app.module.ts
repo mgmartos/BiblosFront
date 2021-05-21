@@ -9,6 +9,7 @@ import { ListaLibrosComponent } from './Libros/lista-libros/lista-libros.compone
 import { ListaAutoresComponent } from './Autores/lista-autores/lista-autores.component';
 import { AccesoApiService } from './acceso-api.service';
 import { AutorComponent } from './Autores/autor/autor.component';
+import { MenuComponent } from './Menu/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AutorComponent } from './Autores/autor/autor.component';
     InicioComponent,
     ListaLibrosComponent,
     ListaAutoresComponent,
-    AutorComponent
+    AutorComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

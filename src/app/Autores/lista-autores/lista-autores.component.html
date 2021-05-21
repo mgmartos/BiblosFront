@@ -1,4 +1,26 @@
 
+<script type="text/javascript">
+   // $(document).ready(function () {
+   
+   //Función hover, sus parámetros son dos funciones, una para la entrada del ratón u una para la salida del ratón.
+   //         En todas las tablas se ilumina la fila sobre la que pasa el ratón.
+    $(function () {
+       $("table td").hover(
+           function () {
+               $("td", $(this).closest("tr")).addClass("hover_row");
+           },
+           function () {
+               $("td", $(this).closest("tr")).removeClass("hover_row");
+           }
+       );
+   });
+   //         En todas las tablas pone las filas pares con un color de fondo y las impares con otro
+  /*  $('table').find('tr:even').css({'background-color': '#f5f5f5' })
+       .end().find('tr:odd').css({ 'background-color': '#add8e6' }); 
+      });     */                   // fin de Ready           
+    </script> 
+  
+
 <div style="margin-top: 1rem;">
     <fieldset>
         <legend>Autores</legend>
@@ -9,7 +31,7 @@
            
             <ul id="Inicial" align="center">
               
-                        <li class="horizontal" style="color:darkred;"  *ngFor="let letra of listaLetras; let index = index"  (click)="pinchaLetra(letra) ">
+                        <li class="horizontal" style="color:darkred; text-decoration: none;"  *ngFor="let letra of listaLetras; let index = index"  (click)="pinchaLetra(letra) ">
                             <a>
                                 {{letra}} 
                             </a>
@@ -22,27 +44,57 @@
 
 
     <input type="checkbox" id="chk1" (change)="onCheckboxChange($event)">
-    <label for="chk1" style="padding-left: 1em;"> Ordenar por Apellido</label><br>
+    <label for="chk1" style="padding-left: 1em;"> Selección por Apellido</label><br>
 
-    <div style="width:100%; padding-bottom:1em" align="center"><i class='fas fa-user-circle fa-border fa-5x'></i><br /></div>
-
-    <div  *ngIf="resultadoAutores">
-        <table id="tLibros" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+    <!-- <div style="width:100%; padding-bottom:1em" align="center"><i class='fas fa-user-circle fa-border fa-5x'></i><br /></div> -->
+    <div  *ngIf="resultadoAutores && !resultadoLibros">
+        <table id="tAutores" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
             <tr>
-                <th style="width:15.00%">Código</th>
+                <th style="width:5.00%">Código</th>
                 <th style="width:40.00%">Nombre</th>
                 <th style="width:15.00%"></th>
                 <th style="width:30.00%"></th>
+                <th style="width:10.00%"></th>
             </tr>
             
-                <tr *ngFor="let autor of resultadoAutores" (click)="selRow(autor.id)">
+                <tr *ngFor="let autor of resultadoAutores ; let index = index"  
+
+                (mouseover)="ponover(true);asignaclases(index)" (mouseout)="ponover(false)"          
+                [ngClass]="index %2 == 0 ? 'impares' : 'pares'"
+                >  <!--   [ngClass]="asignaclases(index)" -->
                     <td>{{autor.id}}</td>
                     <td>{{autor.nombreAutor}}</td>
-                    <td>{{autor.nombre}}</td>
-                    <td>{{autor.apellidos}}</td>
-
+                    <td (click)="cellNombre(autor.nombre)">{{autor.nombre}}</td>
+                    <td (click)="cellApellido(autor.apellidos)">{{autor.apellidos}}</td>
+                   <!--  <td><button type="button"  class="btn btn-info btn-sm"  style="height: 1.5em;" (click)="selRow(autor.id)">Ver</button></td> -->
+                   <td><i class="fas fa-book fa-2x" (click)="selRow(autor.id)"></i>
+                    </td>
                 </tr>
-        
         </table>
     </div>
+
+    <div  *ngIf="resultadoLibros">
+        <div>
+        <button type="button"  class="btn btn-warning btn-sm" (click)="limpiarLibros()">Volver</button>
+        </div>
+        <div>
+        <table id="tLibros" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+            <tr>
+                <th style="width:10.00%">Código</th>
+                <th style="width:40.00%">Título</th>
+                <th style="width:15.00%">Tema</th>
+                <th style="width:30.00%">Editorial</th>
+            </tr>
+                <tr *ngFor="let libro of resultadoLibros ; let index=index"
+                [ngClass]="index %2 == 0 ? 'impares' : 'pares-bis'" >
+                    <td>{{libro.id}}</td>
+                    <td>{{libro.titulo}}</td>
+                    <td>{{libro.Editorialdto.nombreEditorial}}</td>
+                    <td>{{libro.Temadto.nombreTema}}</td>
+                </tr>
+        </table>
+    </div>
+    </div>
+
+
 </div>  

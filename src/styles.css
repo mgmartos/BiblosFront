@@ -63,3 +63,14 @@ table, td {
 .hover_row {
     background-color: #FDCB0A;
 }
+.impares{
+    background-color:#f5f5f5;
+}
+
+.pares{
+    background-color: #add8e6;
+}
+
+.pares-bis{
+    background-color:rgb(223, 197, 201);
+}

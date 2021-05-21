@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import { stringify } from '@angular/compiler/src/util';
 import {AccesoApiService} from '../../acceso-api.service';
-import { AutorDTO } from 'src/app/Autores/autor/autorDTO';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -30,7 +30,11 @@ export class InicioComponent implements OnInit {
     //this.accesoApiService.getTodos().subscribe(data => this.resultadoPeticion = data as string);
 
     this.accesoApiService.getTodos().subscribe((respuesta:HttpResponse<string[]>) => {
-      this.resultadoPeticion = respuesta.body; },error => console.log(error));
+      this.resultadoPeticion = respuesta.body; 
+      this.NumLibros=this.resultadoPeticion[2];
+      this.NumAutores = this.resultadoPeticion[0];
+      this.Numeditoriales = this.resultadoPeticion[1];},
+      error => console.log(error));
 
 
    
@@ -38,15 +42,15 @@ export class InicioComponent implements OnInit {
   if (this.resultadoPeticion)
     {
     cadena = this.resultadoPeticion; 
-    } */
+    } 
 
-  if (this.resultadoPeticion)
+  if (this.resultadoPeticion[2])
     {
     console.log(this.resultadoPeticion);
     this.NumLibros = this.resultadoPeticion[2];
     this.NumAutores = this.resultadoPeticion[0];
     this.Numeditoriales = this.resultadoPeticion[1]; 
-    }
+    }*/
   }  
   
 

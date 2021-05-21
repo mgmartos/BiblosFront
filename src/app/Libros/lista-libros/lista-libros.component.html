@@ -1,1 +1,46 @@
-<p>lista-libros works!</p>
+<div style="margin-top: 1rem;">
+    <fieldset>
+        <legend>Libros</legend>
+    </fieldset> 
+
+    <div id="Iniciales" align="center" style="padding-left: 1%;">
+        <fieldset>
+           
+            <ul id="Inicial" align="left">
+              
+                        <li class="horizontal" style="color:darkred; text-decoration: none; cursor: pointer;"  *ngFor="let letra of listaLetras; let index = index"  (click)="pinchaLetra(letra) ">
+                            <a>
+                                {{letra}} 
+                            </a>
+                        </li>
+
+            </ul>
+     
+        </fieldset>
+    </div>
+
+    <div  *ngIf="resultadoLibros">
+         <div>
+        <table id="tLibros" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+            <tr>
+                <th style="width:10.00%">Código</th>
+                <th style="width:40.00%">Título</th>
+                <th style="width:15.00%">Tema</th>
+                <th style="width:30.00%">Editorial</th>
+            </tr>
+                <tr *ngFor="let libro of resultadoLibros ; let index=index"
+                [ngClass]="index %2 == 0 ? 'impares' : 'pares'" >
+                    <td>{{libro.id}}</td>
+                    <td>{{libro.titulo}}</td>
+                    <td>{{libro.Editorialdto.nombreEditorial}}</td>
+                    <td>{{libro.Temadto.nombreTema}}</td>
+                </tr>
+        </table>
+    </div>
+    </div>
+
+
+
+
+</div>
+    
