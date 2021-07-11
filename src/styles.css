@@ -74,3 +74,25 @@ table, td {
 .pares-bis{
     background-color:rgb(223, 197, 201);
 }
+
+.cursor{
+    cursor:pointer;
+}
+.marco{
+    border:2px solid;  /* blue;*/
+    /* border-width:1px ; */
+    border-radius: 15px; 
+    background-color:aliceblue;
+    margin-top: 15px;
+}
+.marco2{
+    border:2px solid;  /* blue;*/
+    /* border-width:1px ; */
+    border-radius: 15px; 
+    background-color:rgb(223, 197, 201);
+    margin-top: 15px;
+}
+.horizont{
+    display: flex; 
+    align-items: center;
+}

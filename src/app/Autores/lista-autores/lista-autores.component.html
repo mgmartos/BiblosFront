@@ -25,13 +25,13 @@
     <fieldset>
         <legend>Autores</legend>
     </fieldset> 
-
-    <div id="Iniciales" align="center" style="padding-left: 9%;">
+    <div *ngIf="resultadoAutores && !resultadoLibros && !resultadoAutor">
+    <div id="Iniciales" align="center" style="padding-left: 3%;" >
         <fieldset>
            
             <ul id="Inicial" align="center">
               
-                        <li class="horizontal" style="color:darkred; text-decoration: none;"  *ngFor="let letra of listaLetras; let index = index"  (click)="pinchaLetra(letra) ">
+                        <li class="horizontal cursor" style="color:darkred; text-decoration: none;"  *ngFor="let letra of listaLetras; let index = index"  (click)="pinchaLetra(letra) ">
                             <a>
                                 {{letra}} 
                             </a>
@@ -42,19 +42,20 @@
         </fieldset>
     </div>
 
-
     <input type="checkbox" id="chk1" (change)="onCheckboxChange($event)">
     <label for="chk1" style="padding-left: 1em;"> Selección por Apellido</label><br>
 
     <!-- <div style="width:100%; padding-bottom:1em" align="center"><i class='fas fa-user-circle fa-border fa-5x'></i><br /></div> -->
-    <div  *ngIf="resultadoAutores && !resultadoLibros">
+    <div  id="divTablaAutores">
         <table id="tAutores" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
             <tr>
                 <th style="width:5.00%">Código</th>
-                <th style="width:40.00%">Nombre</th>
+                <th style="width:35.00%">Nombre</th>
                 <th style="width:15.00%"></th>
                 <th style="width:30.00%"></th>
-                <th style="width:10.00%"></th>
+                <th style="width:5.00%"></th>
+                <th style="width:5.00%"></th>
+                <th style="width:5.00%"></th>
             </tr>
             
                 <tr *ngFor="let autor of resultadoAutores ; let index = index"  
@@ -67,16 +68,23 @@
                     <td (click)="cellNombre(autor.nombre)">{{autor.nombre}}</td>
                     <td (click)="cellApellido(autor.apellidos)">{{autor.apellidos}}</td>
                    <!--  <td><button type="button"  class="btn btn-info btn-sm"  style="height: 1.5em;" (click)="selRow(autor.id)">Ver</button></td> -->
-                   <td><i class="fas fa-book fa-2x" (click)="selRow(autor.id)"></i>
-                    </td>
+                   <td><i class="fas fa-book fa-1x cursor"   (click)="selRow(autor.id, autor.nombreAutor)"></i></td>
+                   <td><i class="fa fa-question fa-1x cursor" (click)="SelAutor(autor.id)"></i></td>
+                   <td><i class="fas fa-eraser fa-1x cursor" (click)="showDialog('Realmente quiere borrar el autor ' + autor.nombreAutor + '? Borrará todos sus libros.', autor.id)"></i></td>
                 </tr>
         </table>
     </div>
-
+    </div> 
     <div  *ngIf="resultadoLibros">
         <div>
         <button type="button"  class="btn btn-warning btn-sm" (click)="limpiarLibros()">Volver</button>
         </div>
+        <div>
+            <fieldset>
+                <legend>{{nombreAutor}}</legend>
+            </fieldset> 
+        </div>
+
         <div>
         <table id="tLibros" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
             <tr>
@@ -93,8 +101,14 @@
                     <td>{{libro.Temadto.nombreTema}}</td>
                 </tr>
         </table>
-    </div>
+        </div>
+
     </div>
 
-
-</div>  
+    <div  *ngIf="resultadoAutor">
+        <div> <button type="button"  class="btn btn-warning btn-sm" (click)="limpiarAutor()">Volver</button></div>
+        <div> <app-autor [IdAutor]="currentItem"></app-autor></div>
+       
+    </div>
+    <app-confirm-dialog></app-confirm-dialog>  
+</div>

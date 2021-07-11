@@ -29,3 +29,15 @@ export function formatearFecha(date: Date) {
     }
     return resultadoLibros;
   }
+
+  export function MapLibro(Libro:LibroDTO) : LibroDTO
+  {
+   
+      let Clibro = JSON.stringify(Libro);
+      let libro = JSON.parse(Clibro);          
+      Libro.Autordto = libro.autor;
+      Libro.Editorialdto = libro.editorial;
+      Libro.Temadto = libro.tema;
+ 
+    return Libro;
+  }

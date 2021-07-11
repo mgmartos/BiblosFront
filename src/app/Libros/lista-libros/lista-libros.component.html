@@ -2,45 +2,94 @@
     <fieldset>
         <legend>Libros</legend>
     </fieldset> 
+    <div  *ngIf="resultadoLibros && !LibroSeleccionado">
+        <div id="Iniciales" align="center" style="padding-left: 5%;">
+            <fieldset>
+            
+                <ul id="Inicial" align="left">
+                
+                            <li class="horizontal cursor" style="color:darkred; text-decoration: none;"  *ngFor="let letra of listaLetras; let index = index"  (click)="pinchaLetra(letra) ">
+                                <a>
+                                    {{letra}} 
+                                </a>
+                            </li>
 
-    <div id="Iniciales" align="center" style="padding-left: 1%;">
-        <fieldset>
-           
-            <ul id="Inicial" align="left">
-              
-                        <li class="horizontal" style="color:darkred; text-decoration: none; cursor: pointer;"  *ngFor="let letra of listaLetras; let index = index"  (click)="pinchaLetra(letra) ">
-                            <a>
-                                {{letra}} 
-                            </a>
-                        </li>
+                </ul>
+        
+            </fieldset>
+        </div>
 
-            </ul>
-     
-        </fieldset>
-    </div>
+        <div>
+            <div>
+            <table id="tLibros" style="width:100%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+                <tr>
+                    <th style="width:3.00%">Cód.</th>
+                    <th style="width:25.00%">Título</th>
+                    <th style="width:15.00%">Autor</th>
+                    <th style="width:3.00%">Pág.</th>
+                    <th style="width:3.00%">Calif.</th>
+                    <th style="width:10.00%">Tema</th>
+                    <th style="width:10.00%">Editorial</th>
+                    <th style="width:25.00%">Comentario</th>
+                    <th style="width:2.00%"></th>
+                    <th style="width:2.00%"></th>
 
-    <div  *ngIf="resultadoLibros">
-         <div>
-        <table id="tLibros" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
-            <tr>
-                <th style="width:10.00%">Código</th>
-                <th style="width:40.00%">Título</th>
-                <th style="width:15.00%">Tema</th>
-                <th style="width:30.00%">Editorial</th>
-            </tr>
-                <tr *ngFor="let libro of resultadoLibros ; let index=index"
-                [ngClass]="index %2 == 0 ? 'impares' : 'pares'" >
-                    <td>{{libro.id}}</td>
-                    <td>{{libro.titulo}}</td>
-                    <td>{{libro.Editorialdto.nombreEditorial}}</td>
-                    <td>{{libro.Temadto.nombreTema}}</td>
                 </tr>
-        </table>
+                    <tr *ngFor="let libro of resultadoLibros ; let index=index"
+                    [ngClass]="index %2 == 0 ? 'impares' : 'pares'" >
+                        <td>{{libro.id}}</td>
+                        <td>{{libro.titulo}}</td>
+                        <td>{{libro.Autordto.nombreAutor}}</td>
+                        <td>{{libro.paginas}}</td>
+                        <td>{{libro.calificacion}}</td>
+                        <td>{{libro.Temadto.nombreTema}}</td>
+                        <td>{{libro.Editorialdto.nombreEditorial}}</td>
+                        <td>{{libro.comentario}}</td>
+                        <!-- <td><i class="fas fa-book fa-1x cursor"   (click)="selRow(libro.id, libro.titulo)"></i></td> -->
+                        <td><i class="fa fa-question fa-1x cursor" (click)="SelLibro(libro.id)"></i></td>
+                        <td><i class="fas fa-eraser fa-1x cursor" (click)="showDialog('Realmente quiere borrar el Libro ' + libro.titulo, libro.id)"></i></td>
+
+                    </tr>
+            </table>
+            </div>
+        </div>
     </div>
-    </div>
-
-
-
 
 </div>
-    
+
+<div *ngIf="LibroSeleccionado">
+    <div>
+        <button type="button"  class="btn btn-warning btn-sm" (click)="LimpiaLibro()">Volver</button>
+    </div>
+    <app-libro *ngIf="LibroSeleccionado" [IdLibro]="LibroSeleccionado.id"></app-libro>
+</div>
+<!--
+<div  *ngIf="LibroSeleccionado">
+    <table id="tLibros2" style="width:100%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+        <tr (click)="LimpiaLibro()">
+            <th style="width:3.00%">Cód.</th>
+            <th style="width:25.00%">Título</th>
+            <th style="width:15.00%">Autor</th>
+            <th style="width:3.00%">Pág.</th>
+            <th style="width:3.00%">Calif.</th>
+            <th style="width:10.00%">Tema</th>
+            <th style="width:10.00%">Editorial</th>
+            <th style="width:25.00%">Comentario</th>
+        </tr>
+            <tr>
+                <td>{{LibroSeleccionado.id}}</td>
+                <td>{{LibroSeleccionado.titulo}}</td>
+                <td>{{LibroSeleccionado.Autordto.nombreAutor}}</td>
+                <td>{{LibroSeleccionado.paginas}}</td>
+                <td>{{LibroSeleccionado.calificacion}}</td>
+                <td>{{LibroSeleccionado.Temadto.nombreTema}}</td>
+                <td>{{LibroSeleccionado.Editorialdto.nombreEditorial}}</td>
+                <td>{{LibroSeleccionado.comentario}}</td>
+            </tr>
+    </table>
+</div>
+<div><app-confirm-dialog></app-confirm-dialog>  </div>
+
+     <div style="margin-top: 1rem;">
+<app-list-down-temas (CambioTema)="opcionSel($event)"></app-list-down-temas>
+</div> -->

@@ -20,13 +20,28 @@ export interface LibroDTO {
     fecha: string;
 }
 
+export interface LibroCrearDTO {
+    id: number;
+    titulo: string;
+    autorId: number;
+    editorialId:number;
+    temaId: number;
+    calificacion: number;
+    paginas: number;
+    comentario: string;
+    fecha: string;
+}
+
 export interface AutorDTO {
     id: number;
     nombreAutor: string;
     nombre: string;
     apellidos: string;
 }
-
+export interface AutorCrearDTO {
+    nombre: string;
+    apellidos: string;
+}
 
 export interface EditorialDTO{
     id: number;
@@ -38,5 +53,8 @@ export interface EditorialDTO{
 
 export interface TemaDTO{
     id: number;
+    nombreTema: string;
+}
+export interface TemaCrearDTO{
     nombreTema: string;
 }

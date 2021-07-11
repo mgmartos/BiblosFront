@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccesoApiService } from 'src/app/acceso-api.service';
 import { AutorDTO, LibroDTO } from 'src/app/Libros/LibroDTO';
 import { MapLibros } from 'src/app/utilidades/utilsLibros';
-
+import {ConfirmDialogService} from 'src/app/ConfirmDialog.service';
 
 
 @Component({
@@ -14,13 +14,17 @@ import { MapLibros } from 'src/app/utilidades/utilsLibros';
 export class ListaAutoresComponent implements OnInit {
   resultadoAutores: AutorDTO[];
   resultadoLibros:LibroDTO[];
+  resultadoAutor:AutorDTO;
   Libros:any[];
+  currentItem:number
+  nombreAutor:string
+
 
   listaLetras:string[] = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
   checked :string = "n";
   letra :string = "A";
   over : boolean=false;
-  constructor(public accesoApiService:AccesoApiService) { }
+  constructor(public accesoApiService:AccesoApiService,private confirmDialogService: ConfirmDialogService,) { }
 
   ngOnInit(): void {
     //this.getautores("N");
@@ -51,9 +55,18 @@ export class ListaAutoresComponent implements OnInit {
    }
    limpiarLibros(){
     this.resultadoLibros = null;
+    this.nombreAutor = '';
    }
-   selRow(id:number){
+
+   limpiarAutor(){
+    this.resultadoAutor = null;
+   }
+
+
+
+   selRow(id:number, nombre:string){
      console.log(id); 
+     this.nombreAutor = nombre;
      this.accesoApiService.getLibrosAutor(id).subscribe((respuesta:HttpResponse<LibroDTO[]>) => {
       this.resultadoLibros = respuesta.body;
        this.resultadoLibros = MapLibros(this.resultadoLibros);
@@ -106,7 +119,41 @@ export class ListaAutoresComponent implements OnInit {
       hover_row: this.over
   };
   return clases;
+  }
+
+  SelAutor(id:number)
+  {
+    let aut
+    this.accesoApiService.getAutor(id).subscribe((respuesta:HttpResponse<AutorDTO>) => {
+      this.resultadoAutor = respuesta.body;
+      console.log('--->  ' + respuesta.body);
+      console.log('--->  ' +JSON.stringify(this.resultadoAutor));
+      console.log('--->  ' +this.resultadoAutor.id);
+      console.log('--->  ' + this.resultadoAutor.nombreAutor);
+      console.log('--->  ' + this.resultadoAutor.nombre);
+      console.log('--->  ' + this.resultadoAutor.apellidos);
+    },error => console.log(error));
+    this.currentItem = id;
+    console.log(JSON.stringify(this.resultadoAutor));
 
   }
+  DelAutor(id:number)
+  {
+
+
+    
+    //this.accesoApiService.borrarautor(id).subscribe(() =>  console.log('Borrado'));
+  }
+
+  showDialog(mensaje:string, id:number) {  
+    this.confirmDialogService.confirmThis(mensaje, function () {  
+      alert("Si clicked");  
+     // accesoApiService.borrarautor(id).subscribe(() =>  console.log('Borrado'));
+    }, function () {  
+      alert("No clicked");  
+    })  
+  }  
+
+
 
 }

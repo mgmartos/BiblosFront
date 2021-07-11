@@ -1,0 +1,76 @@
+<div class={{Class}} style="width: 100%;">
+    <form (submit)="onSubmit()"   [formGroup]="formbook">
+         <div class="form-group  col-xs-2 col-sm-2 col-md-2">
+            <label for="id">Código</label>
+            <input type="text"  formControlName="id" class="form-control" readonly>
+        </div> 
+        <div>
+            <label for ="titulo">Título</label>
+            <input type="text"    formControlName="titulo"   class="form-control">
+        </div>
+
+        <div class="horizont">
+            <div  class="form-group  col-xs-6 col-sm-6 col-md-6 " ><!--  style="width: 50%;"> -->
+                <label for="autor">Autor</label>
+                <input type="text"  formControlName="autor" class="form-control" (ngModelChange)="NomenclatorAutor()">
+            </div>
+            <div *ngIf="resultadoAutores" class="col-xs-5 col-sm-5 col-md-5">
+                <select  [(ngModel)]="opcionSeleccionado" (change)="capturar()" formControlName="selectautor" style="width: 100%; ">
+                    <option *ngFor="let autor of resultadoAutores; let index=index"  value={{autor.id}}  >{{autor.nombreAutor}}</option>
+                </select>
+            </div>
+             <div class="col-xs-1 col-sm-1 col-md-1">
+                <button type="button" class="btn btn-primary btn-sm" >Nuevo</button>
+            </div> 
+        </div>
+
+  
+        <div  class="horizont">
+        <div  class="form-group col-xs-6 col-sm-6 col-md-6" >
+            <label >Editorial</label>
+            <input type="text"  formControlName="editorial" class="form-control" (ngModelChange)="NomenclatorEditorial()">
+        </div>
+        <div   *ngIf="resultadoEditoriales" class="col-xs-4 col-sm-4 col-md-4">
+            <select  [(ngModel)]="opcionSeleccionadoE" (change)="capturarE()" formControlName="selecteditorial"  style="width:95%;">
+                <option *ngFor="let editorial of resultadoEditoriales; let index=index"  value={{editorial.id}}  >{{editorial.nombreEditorial}}</option>
+    
+            </select>
+        </div>
+        </div>
+        <div  class="horizont">
+            <div  class="form-group  col-xs-6 col-sm-6 col-md-6" >
+                <label >Tema</label>
+                <input type="text"  formControlName="tema" class="form-control" (ngModelChange)="NomenclatorTema() ">
+            </div>
+            <div   *ngIf="resultadoTemas" class="col-xs-3 col-sm-3 col-md-3">
+                <select  [(ngModel)]="opcionSeleccionadoT" (change)="capturarT()" formControlName="selecttema"  style="width:95%;">
+                    <option *ngFor="let tema of resultadoTemas; let index=index"  value={{tema.id}}  >{{tema.nombreTema}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="horizont">
+            <div  class="form-group  col-xs-6 col-sm-6 col-md-6" >
+                <label >Calificación</label>
+                <input type="number"  formControlName="calificacion" class="form-control" min="0" max="10">
+            </div>
+            <div  class="form-group  col-xs-6 col-sm-6 col-md-6" >
+                <label >Páginas</label>
+                <input type="number"  formControlName="paginas" class="form-control">
+            </div>
+        </div>
+        <div  class="form-group col-xs-12 col-sm-12 col-md-12">
+            <label >Comentario</label>
+            <input type="text"  formControlName="comentario" class="form-control">
+        </div>
+
+        <div  class="form-group col-xs-4 col-sm-4 col-md-4">
+            <label >Fecha</label>
+            <input type="date"  formControlName="fecha" class="form-control">
+        </div>
+        <div class="text-center">
+        <button type="submit" class="btn btn-primary" >{{MensajeBoton}}</button>
+        </div>
+    </form>
+   
+</div>
+

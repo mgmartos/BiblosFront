@@ -1,0 +1,31 @@
+<div style="margin-top: 1rem;">
+    <fieldset>
+        <legend>Temáticas</legend>
+    </fieldset> 
+
+    <div   *ngIf="listaTemas">
+        <select  [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+            <option *ngFor="let tema of listaTemas ; let index=index" value={{tema.id}} >{{tema.nombreTema}}</option>
+
+        </select>
+    </div>
+
+ <!--   <div  *ngIf="listaTemas">
+        <div>
+       <table id="ttemas" style="width:100%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+           <tr>
+               <th style="width:5.00%">Código</th>
+               <th style="width:25.00%">Título</th>
+               
+           </tr>
+               <tr *ngFor="let tema of listaTemas ; let index=index"
+               [ngClass]="index %2 == 0 ? 'impares' : 'pares'" >
+                   <td (click)="SelTema(tema.id)">{{tema.id}}</td>
+                   <td>{{tema.nombreTema}}</td>
+               </tr>
+       </table>
+       </div>
+   </div> -->
+ 
+
+</div>
