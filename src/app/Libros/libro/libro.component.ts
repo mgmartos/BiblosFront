@@ -73,6 +73,11 @@ export class LibroComponent implements OnInit {
       this.LibroSeleccionado = respuesta.body;
       this.LibroSeleccionado = MapLibro(this.LibroSeleccionado);
       let date: Date = new Date(this.LibroSeleccionado.fecha);
+      this.IdLibro = idd;
+      this.opcionSeleccionadoT = String(this.LibroSeleccionado.temaId);     
+      this.opcionSeleccionado = String(this.LibroSeleccionado.autorId);      
+      this.opcionSeleccionadoE = String(this.LibroSeleccionado.editorialId);
+
       this.formbook.setValue({id: idd, titulo:  this.LibroSeleccionado.titulo, autor:this.LibroSeleccionado.Autordto.nombreAutor, selectautor:null,
         editorial:this.LibroSeleccionado.Editorialdto.nombreEditorial, selecteditorial:null, tema:this.LibroSeleccionado.Temadto.nombreTema, 
         selecttema:null, calificacion:this.LibroSeleccionado.calificacion , paginas:this.LibroSeleccionado.paginas ,comentario:this.LibroSeleccionado.comentario ,
@@ -115,6 +120,7 @@ export class LibroComponent implements OnInit {
     //this.resultadoAutores = null;
     //this.resultadoAutores =[];
   }
+ 
   capturarE()    
   {
     console.log('--> ' + this.opcionSeleccionadoE)
@@ -153,19 +159,17 @@ export class LibroComponent implements OnInit {
   {
     let semillaAutor : string = "";
     semillaAutor = this.formbook.get('autor').value;
-
     if (semillaAutor.length > 0)
     {
     this.accesoApiService.getNomenclatorAutor(semillaAutor).subscribe((respuesta:HttpResponse<AutorDTO[]>) => {
       this.resultadoAutores = respuesta.body;
-      //console.log(this.resultadoAutores)
+      console.log(respuesta.body)
      },error => console.log(error));
     }
     else
     {
       this.accesoApiService.getAutores('n').subscribe((respuesta:HttpResponse<AutorDTO[]>) => {
         this.resultadoAutores = respuesta.body;
-        //console.log(this.resultadoAutores)
        },error => console.log(error));
     }
 
@@ -178,14 +182,12 @@ export class LibroComponent implements OnInit {
     if (semillaTema.length > 0) {
       this.accesoApiService.getNomenclatorTema(semillaTema).subscribe((respuesta:HttpResponse<TemaDTO[]>) => {
         this.resultadoTemas = respuesta.body;
-        //console.log(this.resultadoAutores)
       },error => console.log(error));
     }
     else
     {
       this.accesoApiService.getTemas().subscribe((respuesta:HttpResponse<TemaDTO[]>) => {
         this.resultadoTemas = respuesta.body;
-        //console.log(this.resultadoAutores)
       },error => console.log(error));
     }
   }
@@ -197,14 +199,12 @@ export class LibroComponent implements OnInit {
     {
       this.accesoApiService.getNomenclatorEditorial(semillaEditorial).subscribe((respuesta:HttpResponse<EditorialDTO[]>) => {
         this.resultadoEditoriales = respuesta.body;
-        //console.log(this.resultadoAutores)
       },error => console.log(error));
     }
     else
     {
       this.accesoApiService.editoriales().subscribe((respuesta:HttpResponse<EditorialDTO[]>) => {
         this.resultadoEditoriales = respuesta.body;
-        //console.log(this.resultadoAutores)
        },error => console.log(error));
     }
   }
@@ -212,10 +212,51 @@ export class LibroComponent implements OnInit {
   onSubmit() : void
   {
     console.log("Título " + this.formbook.get('titulo').value );
+    console.log("Calificación " + this.formbook.get('calificacion').value );
+    let nombre = this.formbook.get('autor').value
+    
+    for (var _i=0;_i<this.resultadoAutores.length;_i++)
+    {
+      if (this.resultadoAutores[_i].nombreAutor == nombre)
+        {
+          this.opcionSeleccionado = String(this.resultadoAutores[_i].id);
+          _i=999999;
+        }
+    }
+
+    let nombreE = this.formbook.get('editorial').value
+    
+    for (var _i=0;_i<this.resultadoEditoriales.length;_i++)
+    {
+      if (this.resultadoEditoriales[_i].nombreEditorial == nombreE)
+        {
+          this.opcionSeleccionadoE = String(this.resultadoEditoriales[_i].id);
+          _i=999999;
+        }
+    }  
+
+    let nombreT = this.formbook.get('tema').value
+    
+    for (var _i=0;_i<this.resultadoTemas.length;_i++)
+    {
+      if (this.resultadoTemas[_i].nombreTema == nombreT)
+        {  
+          this.opcionSeleccionadoT = String(this.resultadoTemas[_i].id);
+          _i=999999;
+        }
+    }
+ 
+
+
+
+
     this.datoslibro.titulo = this.formbook.get('titulo').value;
-    this.datoslibro.autorId = Number(this.opcionSeleccionado)
-    this.datoslibro.editorialId = Number(this.opcionSeleccionadoE)
-    this.datoslibro.temaId = Number(this.opcionSeleccionadoT)
+    this.datoslibro.autorId = Number(this.opcionSeleccionado);
+    this.datoslibro.editorialId = Number(this.opcionSeleccionadoE);
+    this.datoslibro.temaId = Number(this.opcionSeleccionadoT);
+   /*  this.datoslibro.autorId = Number(this.formbook.get('selectautor').value);
+    this.datoslibro.editorialId = Number(this.formbook.get('selecteditorial').value);
+    this.datoslibro.temaId = Number(this.formbook.get('selecttema').value); */
     this.datoslibro.calificacion = Number(this.formbook.get('calificacion').value);
     this.datoslibro.paginas = Number(this.formbook.get('paginas').value);
     this.datoslibro.comentario = this.formbook.get('comentario').value;
