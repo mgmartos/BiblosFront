@@ -5,6 +5,7 @@ import { ListaAutoresComponent } from './Autores/lista-autores/lista-autores.com
 import { InicioComponent } from './Inicio/inicio/inicio.component';
 import { ListaLibrosComponent } from './Libros/lista-libros/lista-libros.component';
 import {LibroComponent} from './Libros/libro/libro.component';
+import { ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
 
 const routes: Routes = [
       {path:'inicio',component:InicioComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
       {path:'autores',component:ListaAutoresComponent},
       {path:'autor',component:AutorComponent},
       {path:'libro',component:LibroComponent},
+      {path:'temas',component:ListaTemasComponent},
       {path:'',component:InicioComponent},
       {path:'**',component:InicioComponent}];
 

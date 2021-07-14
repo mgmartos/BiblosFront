@@ -254,14 +254,11 @@ export class LibroComponent implements OnInit {
     this.datoslibro.autorId = Number(this.opcionSeleccionado);
     this.datoslibro.editorialId = Number(this.opcionSeleccionadoE);
     this.datoslibro.temaId = Number(this.opcionSeleccionadoT);
-   /*  this.datoslibro.autorId = Number(this.formbook.get('selectautor').value);
-    this.datoslibro.editorialId = Number(this.formbook.get('selecteditorial').value);
-    this.datoslibro.temaId = Number(this.formbook.get('selecttema').value); */
+ 
     this.datoslibro.calificacion = Number(this.formbook.get('calificacion').value);
     this.datoslibro.paginas = Number(this.formbook.get('paginas').value);
     this.datoslibro.comentario = this.formbook.get('comentario').value;
     this.datoslibro.fecha = this.formbook.get('fecha').value;
-    //this.IdLibro = 968;
     this.accesoApiService.crearlibro(this.IdLibro,this.datoslibro).subscribe(() => {},error => console.log(error));
     console.log("Comentario " + this.formbook.get('comentario').value );
     //this.form.setValue({nombre:  this.datosautor.nombre, apellidos:this.datosautor.apellidos})

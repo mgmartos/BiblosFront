@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-   apiURL: 'https://localhost:44321/api/Libros/'
+   apiURL: 'https://apimanagementbiblos.azure-api.net/v1/api/Libros/'
+  /*  apiURL: 'https://localhost:44321/api/Libros/' */
 };
 
 /*

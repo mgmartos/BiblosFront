@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/5b0c9ced-7b17-4eed-8de0-047516f35d8f/resourceGroups/BiblosMGM/providers/Microsoft.Web/sites/AngBiblos1",
+    "appService.deploySubpath": "dist\\BiblosFront"
+}

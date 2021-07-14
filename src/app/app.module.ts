@@ -14,6 +14,7 @@ import { AutorComponent } from './Autores/autor/autor.component';
 import { MenuComponent } from './Menu/menu/menu.component';
 import {LibroComponent} from './Libros/libro/libro.component';
 import {ListDownTemasComponent} from './Temas/list-down-temas/list-down-temas.component';
+import {ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {ListDownTemasComponent} from './Temas/list-down-temas/list-down-temas.co
     AutorComponent,
     MenuComponent,
     LibroComponent,
-    ListDownTemasComponent
+    ListDownTemasComponent,
+    ListaTemasComponent
   ],
   imports: [
     BrowserModule,
