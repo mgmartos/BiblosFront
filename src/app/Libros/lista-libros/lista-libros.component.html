@@ -61,8 +61,11 @@
     <div>
         <button type="button"  class="btn btn-warning btn-sm" (click)="LimpiaLibro()">Volver</button>
     </div>
-    <app-libro *ngIf="LibroSeleccionado" [IdLibro]="LibroSeleccionado.id"></app-libro>
+    <app-libro *ngIf="LibroSeleccionado" [IdLibro]="LibroSeleccionado.id" (CambioLibro)="SalirEdicion($event)"></app-libro>
 </div>
+
+<div><app-confirm-dialog></app-confirm-dialog>  </div>
+ 
 <!--
 <div  *ngIf="LibroSeleccionado">
     <table id="tLibros2" style="width:100%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
@@ -88,7 +91,6 @@
             </tr>
     </table>
 </div>
-<div><app-confirm-dialog></app-confirm-dialog>  </div>
 
      <div style="margin-top: 1rem;">
 <app-list-down-temas (CambioTema)="opcionSel($event)"></app-list-down-temas>

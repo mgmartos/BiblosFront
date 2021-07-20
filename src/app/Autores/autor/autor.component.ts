@@ -28,15 +28,15 @@ export class AutorComponent implements OnInit {
 
     this.form = new FormGroup({
           id : new FormControl(''),
-          nombre: new FormControl('',[Validators.required, Validators.minLength(2)]),
-          apellidos: new FormControl(''),
+          nombre: new FormControl('',[Validators.required, Validators.minLength(3)]),
+          apellidos: new FormControl('')
         });
 
     if (this.IdAutor > 0)
     {
     this.dameAutor(this.IdAutor);
     }
-
+   
   }      
 
   onSubmit() : void{
@@ -46,9 +46,6 @@ export class AutorComponent implements OnInit {
     //this.accesoApiService.getAutor(this.IdAutor).subscribe(() => {},error => console.log(error));
     this.accesoApiService.crearautor(this.IdAutor,this.datosautor).subscribe(() => {},error => console.log(error));
     this.form.setValue({nombre:  this.datosautor.nombre, apellidos:this.datosautor.apellidos})
-
-
-
   }
 
   dameAutor(idd:number){

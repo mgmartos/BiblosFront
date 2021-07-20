@@ -1,2 +1,70 @@
-<app-list-down-temas (CambioTema)="opcionSel($event)"></app-list-down-temas>
 
+<div style="margin-top: 1rem;">
+    <div>
+    <fieldset>
+        <legend>Temas</legend>
+    </fieldset> 
+    <app-list-down-temas (CambioTema)="opcionSel($event)"></app-list-down-temas>
+    </div>
+    <div *ngIf="resultadoTemas && !resultadoLibros">
+        <div>
+            <table id="tTemas" style="width:50%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+                <tr>
+                    <th style="width:10.00%">Cód.</th>
+                    <th style="width:80.00%">Tema</th>                  
+                    <th style="width:5.00%"></th>
+                    <th style="width:5.00%"></th>
+
+                </tr>
+                    <tr *ngFor="let tema of resultadoTemas ; let index=index"
+                    [ngClass]="index %2 == 0 ? 'impares' : 'pares'" >
+                        <td>{{tema.id}}</td>
+                        <td>{{tema.nombreTema}}</td>
+                        <td><i class="fa fa-question fa-1x cursor" (click)="SelTema(tema.id)"></i></td>
+                        <td><i class="fas fa-eraser fa-1x cursor" (click)="showDialog('Realmente quiere borrar el Libro ' + tema.nombreTema, tema.id)"></i></td>
+
+                    </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div *ngIf="resultadoLibros">
+            <div>
+                <button type="button"  class="btn btn-warning btn-sm" (click)="LimpiaLibros()">Volver</button>
+            </div>
+        <table id="tLibros" style="width:100%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+            <tr>
+                <th style="width:3.00%">Cód.</th>
+                <th style="width:25.00%">Título</th>
+                <th style="width:15.00%">Autor</th>
+                <th style="width:3.00%">Pág.</th>
+                <th style="width:3.00%">Calif.</th>
+                <th style="width:10.00%">Tema</th>
+                <th style="width:10.00%">Editorial</th>
+                <th style="width:25.00%">Comentario</th>
+             <!--    <th style="width:2.00%"></th>
+                <th style="width:2.00%"></th> -->
+
+            </tr>
+                <tr *ngFor="let libro of resultadoLibros ; let index=index"
+                [ngClass]="index %2 == 0 ? 'impares' : 'pares-bis'" >
+                    <td>{{libro.id}}</td>
+                    <td>{{libro.titulo}}</td>
+                    <td>{{libro.Autordto.nombreAutor}}</td>
+                    <td>{{libro.paginas}}</td>
+                    <td>{{libro.calificacion}}</td>
+                    <td>{{libro.Temadto.nombreTema}}</td>
+                    <td>{{libro.Editorialdto.nombreEditorial}}</td>
+                    <td>{{libro.comentario}}</td>
+                    <!--  <td><i class="fa fa-question fa-1x cursor" (click)="SelLibro(libro.id)"></i></td>
+                    <td><i class="fas fa-eraser fa-1x cursor" (click)="showDialog('Realmente quiere borrar el Libro ' + libro.titulo, libro.id)"></i></td>-->
+
+                </tr>
+        </table>
+        </div>
+    </div>
+
+
+</div>

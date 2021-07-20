@@ -1,0 +1,60 @@
+<div style="margin-top: 1rem;">
+    <fieldset>
+        <legend>Búsquedas</legend>
+    </fieldset> 
+    <form   [formGroup]="formbuscar">
+       <div>
+           <label for ="titulo">Título</label>
+           <input type="text" formControlName="titulo" class="form-control" (ngModelChange)="NomenclatorLibros()">
+       </div>
+       <div>
+        <label for ="autor">Autor</label>
+        <input type="text"    formControlName="autor"   class="form-control" (ngModelChange)="NomenclatorAutores()">
+    </div>
+
+    <div>
+        <div *ngIf="resultadoLibros">
+            <table id="tLibros" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+                <tr>
+                    <th style="width:10.00%">Código</th>
+                    <th style="width:25.00%">Título</th>
+                    <th style="width:25.00%">Autor</th>
+                    <th style="width:10.00%">Calif.</th>
+                    <th style="width:30.00%">Comentario</th>
+                </tr>                
+                <tr *ngFor="let libro of resultadoLibros ; let index = index"  
+
+                (mouseover)="ponover(true);asignaclases(index)" (mouseout)="ponover(false)"          
+                [ngClass]="index %2 == 0 ? 'impares' : 'pares'"
+                >  <!--   [ngClass]="asignaclases(index)" -->
+                    <td>{{libro.id}}</td>
+                    <td>{{libro.titulo}}</td>
+                    <td>{{libro.Autordto.nombreAutor}}</td>
+                    <td>{{libro.paginas}}</td>
+                    <td>{{libro.comentario}}</td>
+                </tr>
+            </table>
+        </div>
+        <div *ngIf="resultadoAutores">
+            <table id="tAutores" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+                <tr>
+                    <th style="width:10.00%">Código</th>
+                    <th style="width:45.00%">Nombre</th>
+                    <th style="width:45.00%">Apellidos</th>
+
+                </tr>
+                
+                    <tr *ngFor="let autor of resultadoAutores ; let index = index"  
+    
+                    (mouseover)="ponover(true);asignaclases(index)" (mouseout)="ponover(false)"          
+                    [ngClass]="index %2 == 0 ? 'impares' : 'pares'"
+                    >  <!--   [ngClass]="asignaclases(index)" -->
+                        <td>{{autor.id}}</td>
+                        <td>{{autor.nombre}}</td>
+                        <td>{{autor.apellidos}}</td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+    </form>
+</div>

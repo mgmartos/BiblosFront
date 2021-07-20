@@ -8,12 +8,32 @@
             <label for ="nombre">Nombre</label>
             <input type="text"    formControlName="nombre"   class="form-control">
         </div>
+        
+        <div *ngIf="form.get('nombre').errors && form.get('nombre').dirty">
+            <p *ngIf="form.get('nombre').hasError('required')">Campo requerido</p>
+            <p *ngIf="form.get('nombre').hasError('minlength')">Mínimo 3 caracteres</p>
+        </div>
+
         <div  class="form-group">
             <label >Apellidos</label>
             <input type="text"  formControlName="apellidos" class="form-control">
         </div>
 
+
+     <!--    <div class="container-fluid p-1 m-1">
+            nombre clases: <b>{{_nombre.className}}</b>
+            Link Valor: <b>{{_nombre.value}}</b>
+        </div> -->
+
+        <div *ngIf="form.valid"> 
+
         <button type="submit" class="btn btn-primary m-x-2" >Enviar</button>
+        </div>  
+
+       
+
+
+
     </form>
    
 </div>

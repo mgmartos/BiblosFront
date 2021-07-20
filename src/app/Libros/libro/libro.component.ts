@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccesoApiService } from 'src/app/acceso-api.service';
 import { HttpResponse } from '@angular/common/http';
@@ -14,6 +14,8 @@ import { MapLibro } from 'src/app/utilidades/utilsLibros';
 export class LibroComponent implements OnInit {
 
   @Input() IdLibro = 0; 
+  @Output()
+  CambioLibro: EventEmitter<string> = new EventEmitter<string>();
   resultadoAutores : AutorDTO[];
   resultadoEditoriales : EditorialDTO[];
   resultadoTemas : TemaDTO[];
@@ -31,16 +33,16 @@ export class LibroComponent implements OnInit {
   ngOnInit(): void {
     this.formbook = new FormGroup({
       id : new FormControl(''),
-      titulo: new FormControl('',[Validators.required, Validators.minLength(2)]),
-      autor: new FormControl(''),
+      titulo: new FormControl('',[Validators.required, Validators.minLength(5)]),
+      autor: new FormControl('',[Validators.required, Validators.minLength(5)]),
       selectautor:new FormControl(''),
-      editorial: new FormControl(''),
+      editorial: new FormControl('',[Validators.required, Validators.minLength(5)]),
       selecteditorial:new FormControl(''),
-      tema: new FormControl(''),
+      tema: new FormControl('',[Validators.required]),
       selecttema:new FormControl(''),
-      calificacion: new FormControl(''),
-      paginas: new FormControl(''),
-      comentario: new FormControl(''),
+      calificacion: new FormControl('',[Validators.required, Validators.min(0), Validators.max(10)]),
+      paginas: new FormControl('',[Validators.required, Validators.min(0), Validators.max(9999)]),
+      comentario: new FormControl('',[Validators.maxLength(1024)]),
       fecha: new FormControl('')
     });
       
@@ -262,6 +264,7 @@ export class LibroComponent implements OnInit {
     this.accesoApiService.crearlibro(this.IdLibro,this.datoslibro).subscribe(() => {},error => console.log(error));
     console.log("Comentario " + this.formbook.get('comentario').value );
     //this.form.setValue({nombre:  this.datosautor.nombre, apellidos:this.datosautor.apellidos})
+    this.CambioLibro.emit('Escrito');
   }
 
 

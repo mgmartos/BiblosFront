@@ -34,11 +34,23 @@ getLibrosAutor(id:number): Observable<any>{
   return this.http.get<LibroDTO[]>(this.apiURL + 'librosautor?idautor=' + id ,{observe: 'response', params});
 }
 
+
+getLibrosTema(id:number): Observable<any>{
+  let params = new HttpParams();
+  return this.http.get<LibroDTO[]>(this.apiURL + 'librostema?idtema=' + id ,{observe: 'response', params});
+}
+
 getLibrosLetra(letra:string): Observable<any>{
   let params = new HttpParams();
   return this.http.get<LibroDTO[]>(this.apiURL + 'librosLetra?letra=' + letra ,{observe: 'response', params});
 }
 
+getLibrosNomenclator(semilla:string): Observable<any>{
+  let params = new HttpParams();
+  return this.http.get<LibroDTO[]>(this.apiURL + 'nomenclatorlibros?semilla=' + semilla ,{observe: 'response', params});
+}
+
+  
 getLibro(id:number): Observable<any>{
   let params = new HttpParams();
   return this.http.get<LibroDTO>(this.apiURL + 'libro?id=' + id ,{observe: 'response', params});

@@ -50,7 +50,7 @@
         </div>
         <div class="horizont">
             <div  class="form-group  col-xs-6 col-sm-6 col-md-6" >
-                <label >Calificación</label>
+                <label >Calificación</label>  
                 <input type="number"  formControlName="calificacion" class="form-control" min="0" max="10">
             </div>
             <div  class="form-group  col-xs-6 col-sm-6 col-md-6" >
@@ -68,9 +68,7 @@
             <input type="date"  formControlName="fecha" class="form-control">
         </div>
         <div class="text-center">
-        <button type="submit" class="btn btn-primary" >{{MensajeBoton}}</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!formbook.valid">{{MensajeBoton}}</button>
         </div>
     </form>
-   
 </div>
-

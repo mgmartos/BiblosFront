@@ -14,6 +14,7 @@ export class ListaLibrosComponent implements OnInit {
   resultadoLibros:LibroDTO[];
   Libros:any[];
   LibroSeleccionado:LibroDTO;
+  LetraActiva :string = '#'
 
   listaLetras:string[] = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
   constructor(public accesoApiService:AccesoApiService,private confirmDialogService: ConfirmDialogService) { }
@@ -23,9 +24,11 @@ export class ListaLibrosComponent implements OnInit {
   }
 
   pinchaLetra(letra:string){
-    console.log(letra);
+
+    this.LetraActiva = letra;
     this.accesoApiService.getLibrosLetra(letra).subscribe((respuesta:HttpResponse<LibroDTO[]>) => {
       this.resultadoLibros = respuesta.body;
+      console.log('-->  ' + letra);
       this.resultadoLibros = MapLibros(this.resultadoLibros);
     },error => console.log(error));
 
@@ -36,10 +39,19 @@ export class ListaLibrosComponent implements OnInit {
     console.log('En Padre ' + tema.id + '   ' + tema.nombreTema);
    }
 
+   SalirEdicion(men:string)
+   {
+     if (men == 'Escrito')
+     {
+       console.log('Activo ' + this.LetraActiva);
+       //this.LimpiaLibro();
+     }
+   }
+
    selRow(id:number, titulo:string)
    {
     console.log('En SelRow');
-   }
+   } 
 
    SelLibro(id:number)
    {
@@ -52,7 +64,9 @@ export class ListaLibrosComponent implements OnInit {
    }
    LimpiaLibro()
    {
-    this.LibroSeleccionado = null;
+    this.LibroSeleccionado = null;     
+    this.resultadoLibros = null;
+    this.pinchaLetra(this.LetraActiva);
 
    }
    showDialog(mensaje:string, id:number)

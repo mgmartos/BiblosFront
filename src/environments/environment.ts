@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-   apiURL: 'https://apimanagementbiblos.azure-api.net/v1/api/Libros/'
-  /*  apiURL: 'https://localhost:44321/api/Libros/' */
+    /*apiURL: 'https://apimanagementbiblos.azure-api.net/v1/api/Libros/'
+  'https://wapibiblos120210713083254.azurewebsites.net/api/Libros/'*/
+    apiURL: 'https://localhost:44321/api/Libros/' 
 };
 
 /*
@@ -16,3 +17,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+

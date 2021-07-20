@@ -15,6 +15,7 @@ import { MenuComponent } from './Menu/menu/menu.component';
 import {LibroComponent} from './Libros/libro/libro.component';
 import {ListDownTemasComponent} from './Temas/list-down-temas/list-down-temas.component';
 import {ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
+import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
     MenuComponent,
     LibroComponent,
     ListDownTemasComponent,
-    ListaTemasComponent
+    ListaTemasComponent,
+    BuscalibrosComponent,
   ],
   imports: [
     BrowserModule,

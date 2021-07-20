@@ -6,12 +6,14 @@ import { InicioComponent } from './Inicio/inicio/inicio.component';
 import { ListaLibrosComponent } from './Libros/lista-libros/lista-libros.component';
 import {LibroComponent} from './Libros/libro/libro.component';
 import { ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
+import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.component';
 
 const routes: Routes = [
       {path:'inicio',component:InicioComponent},
       {path:'libros',component:ListaLibrosComponent},
       {path:'autores',component:ListaAutoresComponent},
-      {path:'autor',component:AutorComponent},
+      {path:'autor',component:AutorComponent},      
+      {path:'buscar',component:BuscalibrosComponent},
       {path:'libro',component:LibroComponent},
       {path:'temas',component:ListaTemasComponent},
       {path:'',component:InicioComponent},
@@ -21,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { }  
+    

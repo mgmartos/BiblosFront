@@ -1,6 +1,9 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AccesoApiService } from 'src/app/acceso-api.service';
-import { TemaDTO } from 'src/app/Libros/LibroDTO';
+import { ConfirmDialogService } from 'src/app/ConfirmDialog.service';
+import { LibroDTO, TemaDTO } from 'src/app/Libros/LibroDTO';
+import { MapLibros } from 'src/app/utilidades/utilsLibros';
 
 @Component({
   selector: 'app-lista-temas',
@@ -9,16 +12,46 @@ import { TemaDTO } from 'src/app/Libros/LibroDTO';
 })
 export class ListaTemasComponent implements OnInit {
   resultadoTemas:TemaDTO[];
+  resultadoLibros:LibroDTO[];
 
-  constructor(public accesoApiService:AccesoApiService) { }
+  constructor(public accesoApiService:AccesoApiService, private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {
+    this.accesoApiService.getTemas().subscribe((respuesta:HttpResponse<TemaDTO[]>) => {
+      this.resultadoTemas = respuesta.body;
+    },error => console.log(error));
   }
 
   opcionSel(tema:TemaDTO)
   {
    console.log('En Padre ' + tema.id + '   ' + tema.nombreTema);
+
+  }
+  SelTema(id:number){
+    this.accesoApiService.getLibrosTema(id).subscribe((respuesta:HttpResponse<LibroDTO[]>) => {
+      this.resultadoLibros = respuesta.body;
+      this.resultadoLibros = MapLibros(this.resultadoLibros);
+      console.log(this.resultadoLibros);
+    },error => console.log(error));
+//console.log('Sacaremos la lista de libros')
+  }
+
+  LimpiaLibros(){
+    this.resultadoLibros = null;
   }
 
 
+
+
+
+  showDialog(mensaje:string, id:number)
+  {
+   console.log('En showDialog ' + mensaje + '  ' + Number(id));
+   this.confirmDialogService.confirmThis(mensaje, function () {  
+     alert("Si clicked");  
+    // accesoApiService.borrarautor(id).subscribe(() =>  console.log('Borrado'));
+   }, function () {  
+     alert("No clicked");  
+   })  
+  } 
 }
