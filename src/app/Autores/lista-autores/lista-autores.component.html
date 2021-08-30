@@ -47,7 +47,7 @@
 
     <!-- <div style="width:100%; padding-bottom:1em" align="center"><i class='fas fa-user-circle fa-border fa-5x'></i><br /></div> -->
     <div  id="divTablaAutores">
-        <table id="tAutores" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+        <table id="tAutores" style="width:100%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
             <tr>
                 <th style="width:5.00%">Código</th>
                 <th style="width:35.00%">Nombre</th>
@@ -58,7 +58,7 @@
                 <th style="width:5.00%"></th>
             </tr>
             
-                <tr *ngFor="let autor of resultadoAutores ; let index = index"  
+                <tr *ngFor="let autor of resultadoAutores | paginate: { itemsPerPage: items, currentPage: pagina, totalItems: total}; let index = index"  
 
                 (mouseover)="ponover(true);asignaclases(index)" (mouseout)="ponover(false)"          
                 [ngClass]="index %2 == 0 ? 'impares' : 'pares'"
@@ -72,7 +72,12 @@
                    <td><i class="fa fa-question fa-1x cursor" (click)="SelAutor(autor.id)"></i></td>
                    <td><i class="fas fa-eraser fa-1x cursor" (click)="showDialog('Realmente quiere borrar el autor ' + autor.nombreAutor + '? Borrará todos sus libros.', autor.id)"></i></td>
                 </tr>
-        </table>
+        </table>  
+ 
+
+    </div> 
+    <div>
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Siguiente" class="paginationRed"></pagination-controls>
     </div>
     </div> 
     <div  *ngIf="resultadoLibros">
@@ -83,7 +88,7 @@
             <fieldset>
                 <legend>{{nombreAutor}}</legend>
             </fieldset> 
-        </div>
+        </div> 
 
         <div>
         <table id="tLibros" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
@@ -105,6 +110,7 @@
 
     </div>
 
+ 
     <div  *ngIf="resultadoAutor">
         <div> <button type="button"  class="btn btn-warning btn-sm" (click)="limpiarAutor()">Volver</button></div>
         <div> <app-autor [IdAutor]="currentItem"></app-autor></div>
@@ -112,3 +118,8 @@
     </div>
     <app-confirm-dialog></app-confirm-dialog>  
 </div>
+<!-- <div *ngIf="resultadoAutores && !resultadoLibros && !resultadoAutor">
+       
+</div> -->
+
+

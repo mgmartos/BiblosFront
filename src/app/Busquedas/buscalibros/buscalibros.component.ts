@@ -1,6 +1,8 @@
 import { HttpResponse } from '@angular/common/http';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+/* import { threadId } from 'node:worker_threads'; */
 import { AccesoApiService } from 'src/app/acceso-api.service';
 import { AutorDTO, LibroDTO } from 'src/app/Libros/LibroDTO';
 import { MapLibros } from 'src/app/utilidades/utilsLibros';
@@ -14,7 +16,9 @@ export class BuscalibrosComponent implements OnInit {
   formbuscar: FormGroup;
   resultadoAutores : AutorDTO[];
   resultadoLibros : LibroDTO[];
+  cantidadLibros : number = 0;
   over : boolean=false;
+  currentItem : number;
 
   constructor(public accesoApiService:AccesoApiService, private formBuilder: FormBuilder) { 
     this.formbuscar = new FormGroup({
@@ -30,12 +34,15 @@ export class BuscalibrosComponent implements OnInit {
     this.resultadoLibros = null;
     let semillaLibro : string = "";
     semillaLibro = this.formbuscar.get('titulo').value;
+
+  
     if (semillaLibro.length > 0)
     {
       this.accesoApiService.getLibrosNomenclator(semillaLibro).subscribe((respuesta:HttpResponse<LibroDTO[]>) => {
         this.resultadoLibros = respuesta.body;
         console.log('-->  ' + semillaLibro);
         this.resultadoLibros = MapLibros(this.resultadoLibros);
+        this.cantidadLibros = this.resultadoLibros.length;
       },error => console.log(error));
   }
   }
@@ -71,5 +78,17 @@ export class BuscalibrosComponent implements OnInit {
 
   onSubmit() : void{
 
+
+  }
+
+  ponerCurrent(id:number){
+    console.log('Ponemos current : ' + id); 
+    if ((id != null) && (id > 0))
+    {
+      this.currentItem = id;
+    }
+  }
+  limpiarCurrent(){
+    this.currentItem = null;
   }
 }

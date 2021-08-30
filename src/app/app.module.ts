@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ConfirmDialogModule} from './confirm-dialog.module'
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import {LibroComponent} from './Libros/libro/libro.component';
 import {ListDownTemasComponent} from './Temas/list-down-temas/list-down-temas.component';
 import {ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
 import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.component';
+import { LibrosautorComponent } from './Libros/librosautor/librosautor.component';
+import { LibrosComponent } from './Libros/libros/libros.component';
 
 
 @NgModule({
@@ -30,6 +33,8 @@ import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.compon
     ListDownTemasComponent,
     ListaTemasComponent,
     BuscalibrosComponent,
+    LibrosautorComponent,
+    LibrosComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,8 +42,12 @@ import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    NgxPaginationModule
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+],
   providers: [AccesoApiService],
   bootstrap: [AppComponent]
 })

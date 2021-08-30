@@ -19,6 +19,10 @@ export class ListaAutoresComponent implements OnInit {
   currentItem:number
   nombreAutor:string
 
+  pagina : number = 1;
+  items : number = 20;
+  total : string;
+
 
   listaLetras:string[] = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
   checked :string = "n";
@@ -45,11 +49,26 @@ export class ListaAutoresComponent implements OnInit {
      }
    }
 
+   pageChanged(men:any){
+    console.log("Paginando " + men);
+    this.pagina = Number(men);
+    this.pinchaLetra(this.letra);
+  }
+
+
    pinchaLetra(letra:string){
-    console.log(letra);
-    console.log(this.checked);
-    this.accesoApiService.getAutoresLetra(this.checked,letra).subscribe((respuesta:HttpResponse<AutorDTO[]>) => {
-      this.resultadoAutores = respuesta.body; },error => console.log(error));
+    //console.log(letra);
+    //console.log(this.checked);
+    if (this.letra != letra)
+    {
+      this.pagina = 1;
+    }
+   // this.accesoApiService.getAutoresLetra(this.checked,letra).subscribe((respuesta:HttpResponse<AutorDTO[]>) => {
+      this.accesoApiService.getAutoresLetra(String(this.pagina),String(this.items),this.checked,letra).subscribe((respuesta:HttpResponse<AutorDTO[]>) => {
+        this.resultadoAutores = respuesta.body;
+        this.total = respuesta.headers.get("cantidadTotalRegistros");
+        console.log("Total " + this.total);
+          },error => console.log(error));
       this.letra = letra;
       this.limpiarLibros();
    }
@@ -103,6 +122,7 @@ export class ListaAutoresComponent implements OnInit {
     {
       this.checked = "n"
     }
+    this.pagina = 1;
     this.pinchaLetra(this.letra);
   }
   ponover(valor:boolean){

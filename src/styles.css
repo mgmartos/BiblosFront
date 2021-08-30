@@ -72,7 +72,7 @@ table, td {
 }
 
 .pares-bis{
-    background-color:rgb(223, 197, 201);
+    background-color:rgb(243, 217, 220);
 }
 
 .cursor{
@@ -94,4 +94,8 @@ table, td {
 .horizont{
     display: flex; 
     align-items: center;
+}
+
+th{
+    background-color:rgb(245, 234, 224);
 }

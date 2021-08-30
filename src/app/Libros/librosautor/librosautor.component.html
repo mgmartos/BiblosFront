@@ -1,0 +1,27 @@
+<div *ngIf="resultadoLibros">
+  <!--   <br>
+
+    <div>
+        <fieldset>
+            <legend>{{nombreautor}}</legend>
+        </fieldset> 
+    </div> -->
+
+    <div>
+    <table id="tLibros" style="width:90%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+        <tr>
+            <th style="width:10.00%">Código</th>
+            <th style="width:40.00%">Título</th>
+            <th style="width:15.00%">Tema</th>
+            <th style="width:30.00%">Editorial</th>
+        </tr>
+            <tr *ngFor="let libro of resultadoLibros ; let index=index"
+            [ngClass]="index %2 == 0 ? 'pares-bis' : 'impares'" >
+                <td>{{libro.id}}</td>
+                <td>{{libro.titulo}}</td>
+                <td>{{libro.Editorialdto.nombreEditorial}}</td>
+                <td>{{libro.Temadto.nombreTema}}</td>
+            </tr>
+    </table>
+    </div>
+</div>

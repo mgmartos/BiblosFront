@@ -1,0 +1,45 @@
+<div style="margin-top: 1rem;">
+    <fieldset>
+        <legend>Todos los Libros</legend>
+    </fieldset> 
+
+
+        <div>
+            <div>
+            <table id="tLibros" style="width:100%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+                <tr>
+                    <th style="width:3.00%">Cód.</th>
+                    <th style="width:25.00%">Título</th>
+                    <th style="width:15.00%">Autor</th>
+                    <th style="width:5.00%">Pág.</th>
+                    <th style="width:5.00%">Calif.</th>
+                    <th style="width:10.00%">Tema</th>
+                    <th style="width:10.00%">Editorial</th>
+                    <th style="width:25.00%">Comentario</th>
+                   <!-- <th style="width:2.00%"></th>
+                    <th style="width:2.00%"></th>-->
+
+                </tr>
+                    <tr *ngFor="let libro of resultadoLibros  | paginate: { itemsPerPage: items, currentPage: pagina, totalItems: total} ; let index=index "
+                    [ngClass]="index %2 == 0 ? 'impares' : 'pares'" >
+                        <td>{{libro.id}}</td>
+                        <td>{{libro.titulo}}</td>
+                        <td>{{libro.Autordto.nombreAutor}}</td>
+                        <td>{{libro.paginas}}</td>
+                        <td>{{libro.calificacion}}</td>
+                        <td>{{libro.Temadto.nombreTema}}</td>
+                        <td>{{libro.Editorialdto.nombreEditorial}}</td>
+                        <td>{{libro.comentario}}</td>
+                        <!-- <td><i class="fas fa-book fa-1x cursor"   (click)="selRow(libro.id, libro.titulo)"></i></td> 
+                        <td><i class="fa fa-question fa-1x cursor" (click)="SelLibro(libro.id)"></i></td>
+                        <td><i class="fas fa-eraser fa-1x cursor" (click)="showDialog('Realmente quiere borrar el Libro ' + libro.titulo, libro.id)"></i></td>-->
+
+                    </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+    
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Siguiente" class="paginationRed"></pagination-controls>
+    
+

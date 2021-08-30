@@ -1,12 +1,17 @@
 <div style="margin-top: 1rem;">
     <fieldset>
-        <legend>Búsquedas</legend>
+        <legend>Búsquedas <span *ngIf="resultadoLibros">({{cantidadLibros}})</span></legend>
     </fieldset> 
     <form   [formGroup]="formbuscar">
        <div>
            <label for ="titulo">Título</label>
            <input type="text" formControlName="titulo" class="form-control" (ngModelChange)="NomenclatorLibros()">
        </div>
+<!--        <div>
+           <span>
+               {{cantidadLibros}}
+           </span>
+       </div> -->
        <div>
         <label for ="autor">Autor</label>
         <input type="text"    formControlName="autor"   class="form-control" (ngModelChange)="NomenclatorAutores()">
@@ -49,11 +54,14 @@
                     (mouseover)="ponover(true);asignaclases(index)" (mouseout)="ponover(false)"          
                     [ngClass]="index %2 == 0 ? 'impares' : 'pares'"
                     >  <!--   [ngClass]="asignaclases(index)" -->
-                        <td>{{autor.id}}</td>
+                        <td (click)="ponerCurrent(autor.id)"  (mouseover)="limpiarCurrent()"  class="grande">{{autor.id}}</td>
                         <td>{{autor.nombre}}</td>
                         <td>{{autor.apellidos}}</td>
                     </tr>
             </table>
+        </div>
+        <div *ngIf="currentItem">
+           <app-librosautor [IdAutor]="currentItem"></app-librosautor>          
         </div>
     </div>
     </form>

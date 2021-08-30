@@ -7,10 +7,12 @@ import { ListaLibrosComponent } from './Libros/lista-libros/lista-libros.compone
 import {LibroComponent} from './Libros/libro/libro.component';
 import { ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
 import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.component';
+import { LibrosComponent } from './Libros/libros/libros.component';
 
 const routes: Routes = [
       {path:'inicio',component:InicioComponent},
       {path:'libros',component:ListaLibrosComponent},
+      {path:'librostot',component:LibrosComponent},
       {path:'autores',component:ListaAutoresComponent},
       {path:'autor',component:AutorComponent},      
       {path:'buscar',component:BuscalibrosComponent},

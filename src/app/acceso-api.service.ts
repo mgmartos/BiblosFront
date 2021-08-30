@@ -23,10 +23,26 @@ export class AccesoApiService {
       return this.http.get<AutorDTO[]>(this.apiURL + 'autores?tipo=' + tipo ,{observe: 'response', params});
   }
 
-  getAutoresLetra(tipo:string, letra : string): Observable<any>{
+  getAutoresLetra_Old(tipo:string, letra : string): Observable<any>{
     let params = new HttpParams();
     
     return this.http.get<AutorDTO[]>(this.apiURL + 'autoresLetra?tipo=' + tipo + '&letra=' + letra ,{observe: 'response', params});
+}
+
+
+getAutoresLetra(pagina:string, recordsPorPagina:string, tipo:string, letra : string): Observable<any>{
+  let params = new HttpParams();
+  params = params.append('pagina', pagina);
+  params = params.append('recordsPorPagina', recordsPorPagina);
+  return this.http.get<AutorDTO[]>(this.apiURL + 'autoresLetra?tipo=' + tipo + '&letra=' + letra ,{observe: 'response', params});
+}
+
+
+getLibros(pagina:string, recordsPorPagina:string): Observable<any>{
+  let params = new HttpParams();
+  params = params.append('pagina', pagina);
+  params = params.append('recordsPorPagina', recordsPorPagina);
+  return this.http.get<LibroDTO[]>(this.apiURL + 'libros',{observe: 'response', params});
 }
 
 getLibrosAutor(id:number): Observable<any>{
@@ -45,12 +61,23 @@ getLibrosLetra(letra:string): Observable<any>{
   return this.http.get<LibroDTO[]>(this.apiURL + 'librosLetra?letra=' + letra ,{observe: 'response', params});
 }
 
-getLibrosNomenclator(semilla:string): Observable<any>{
+getLibrosNomenclator (semilla:string): Observable<any>{
+
   let params = new HttpParams();
+  params = params.append('pagina', '3');
+  params = params.append('recordsPorPagina', '20');
   return this.http.get<LibroDTO[]>(this.apiURL + 'nomenclatorlibros?semilla=' + semilla ,{observe: 'response', params});
+
+
+ /*  let params = new HttpParams();
+  params = params.append('pagina', pagina.toString());
+  params = params.append('recordsPorPagina', cantidadRegistrosAMostrar.toString());
+  return this.http.get<generoDTO[]>(this.apiURL, {observe: 'response', params});
+ */
+
 }
 
-  
+    
 getLibro(id:number): Observable<any>{
   let params = new HttpParams();
   return this.http.get<LibroDTO>(this.apiURL + 'libro?id=' + id ,{observe: 'response', params});
