@@ -13,6 +13,12 @@ import { MapLibros } from 'src/app/utilidades/utilsLibros';
 export class ListaTemasComponent implements OnInit {
   resultadoTemas:TemaDTO[];
   resultadoLibros:LibroDTO[];
+  idActual: number = 0;
+  
+  pagina : number = 1;
+  items : number = 15;
+  totaln : number = 0;
+  total : string;
 
   constructor(public accesoApiService:AccesoApiService, private confirmDialogService: ConfirmDialogService) { }
 
@@ -28,9 +34,16 @@ export class ListaTemasComponent implements OnInit {
 
   }
   SelTema(id:number){
-    this.accesoApiService.getLibrosTema(id).subscribe((respuesta:HttpResponse<LibroDTO[]>) => {
+    if (id != this.idActual)
+    {
+      this.pagina = 1;
+    }
+    this.idActual = id;
+    this.accesoApiService.getLibrosTema(String(this.pagina),String(this.items),id).subscribe((respuesta:HttpResponse<LibroDTO[]>) => {
       this.resultadoLibros = respuesta.body;
       this.resultadoLibros = MapLibros(this.resultadoLibros);
+      this.total = respuesta.headers.get("cantidadTotalRegistros");
+      this.totaln = Number(this.total);
       console.log(this.resultadoLibros);
     },error => console.log(error));
 //console.log('Sacaremos la lista de libros')
@@ -38,6 +51,12 @@ export class ListaTemasComponent implements OnInit {
 
   LimpiaLibros(){
     this.resultadoLibros = null;
+  }
+
+  pageChanged(men:any){
+    console.log("Paginando " + men);
+    this.pagina = Number(men);
+    this.SelTema(this.idActual);
   }
 
 

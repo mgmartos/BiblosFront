@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
     /*apiURL: 'https://apimanagementbiblos.azure-api.net/v1/api/Libros/'
-  'https://wapibiblos120210713083254.azurewebsites.net/api/Libros/'*/
-    apiURL: 'https://localhost:44321/api/Libros/' 
+  'https://wapibiblos120210713083254.azurewebsites.net/api/Libros/'
+    apiURL: 'https://localhost:44321/api/Libros/' */
+    apiURL: 'https://biblosapimanagement.azure-api.net/v1/api/Libros/'
 };
 
 /*

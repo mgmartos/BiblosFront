@@ -21,6 +21,7 @@ export class ListaAutoresComponent implements OnInit {
 
   pagina : number = 1;
   items : number = 20;
+  totaln : number = 20;
   total : string;
 
 
@@ -67,6 +68,7 @@ export class ListaAutoresComponent implements OnInit {
       this.accesoApiService.getAutoresLetra(String(this.pagina),String(this.items),this.checked,letra).subscribe((respuesta:HttpResponse<AutorDTO[]>) => {
         this.resultadoAutores = respuesta.body;
         this.total = respuesta.headers.get("cantidadTotalRegistros");
+        this.totaln = Number(this.total);
         console.log("Total " + this.total);
           },error => console.log(error));
       this.letra = letra;

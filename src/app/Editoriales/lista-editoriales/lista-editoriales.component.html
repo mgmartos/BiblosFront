@@ -1,0 +1,41 @@
+<div style="margin-top: 1rem;">
+    <div>
+    <fieldset>
+        <legend>Editoriales</legend>
+    </fieldset> 
+    </div>
+    <div  *ngIf="resultadoEditoriales && (editorialSeleccionada == 0)">
+        <table id="tEditoriales" style="width:50%; border:thin; margin-bottom:10px;margin-top:10px" align="left">
+            <tr>
+
+                <th style="width:5.00%">Id</th>
+                <th style="width:35.00%">Nombre</th>
+                <th style="width:60.00%">URL</th>
+               
+            <!--             <th style="width:2.00%"></th>
+                <th style="width:2.00%"></th> -->
+    
+            </tr>
+                <tr *ngFor="let editorial of resultadoEditoriales ; let index=index"
+                [ngClass]="index %2 == 0 ? 'impares' : 'pares'"  (click)="SelEditorial(editorial.id)" >
+                <td>{{editorial.id}}</td>
+                <td>{{editorial.nombreEditorial}}</td>
+                <td>{{editorial.urlEditorial}}</td>
+                    <!-- <td><i class="fa fa-question fa-1x cursor" (click)="SelLibro(libro.id)"></i></td>
+                    <td><i class="fas fa-eraser fa-1x cursor" (click)="showDialog('Realmente quiere borrar el Libro ' + libro.titulo, libro.id)"></i></td>-->
+    
+                </tr>
+        </table>
+        </div>
+        <div>
+
+            <div *ngIf="editorialSeleccionada > 0">
+
+                <div>
+                    <app-listalibros [editorial]="editorialSeleccionada" (CambioEditorial)="SalirEdicion($event)"></app-listalibros>
+                </div>
+            
+               
+            </div>
+        </div>
+</div>
