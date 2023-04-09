@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "BiblosFront"
+  "defaultProject": "BiblosFront",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -76,7 +76,7 @@
  
 
     </div> 
-    <div>
+    <div *ngIf="totaln > items">
     <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Siguiente" class="paginationRed"></pagination-controls>
     </div>
     </div> 

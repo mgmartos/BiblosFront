@@ -8,6 +8,7 @@ import {LibroComponent} from './Libros/libro/libro.component';
 import { ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
 import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.component';
 import { LibrosComponent } from './Libros/libros/libros.component';
+import {ListaEditorialesComponent} from './Editoriales/lista-editoriales/lista-editoriales.component';
 
 const routes: Routes = [
       {path:'inicio',component:InicioComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
       {path:'buscar',component:BuscalibrosComponent},
       {path:'libro',component:LibroComponent},
       {path:'temas',component:ListaTemasComponent},
+      {path:'editoriales',component:ListaEditorialesComponent},
       {path:'',component:InicioComponent},
       {path:'**',component:InicioComponent}];
 

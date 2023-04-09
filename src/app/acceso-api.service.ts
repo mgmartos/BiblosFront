@@ -51,13 +51,26 @@ getLibrosAutor(id:number): Observable<any>{
 }
 
 
-getLibrosTema(id:number): Observable<any>{
+getLibrosTema(pagina:string, recordsPorPagina:string, id:number): Observable<any>{
   let params = new HttpParams();
+  params = params.append('pagina', pagina);
+  params = params.append('recordsPorPagina', recordsPorPagina);
   return this.http.get<LibroDTO[]>(this.apiURL + 'librostema?idtema=' + id ,{observe: 'response', params});
 }
 
-getLibrosLetra(letra:string): Observable<any>{
+
+
+getLibrosEditorial(pagina:string, recordsPorPagina:string, id:number): Observable<any>{
   let params = new HttpParams();
+  params = params.append('pagina', pagina);
+  params = params.append('recordsPorPagina', recordsPorPagina);
+  return this.http.get<LibroDTO[]>(this.apiURL + 'libroseditorial?ideditorial=' + id ,{observe: 'response', params});
+}
+
+getLibrosLetra(pagina:string, recordsPorPagina:string,letra:string): Observable<any>{
+  let params = new HttpParams();
+  params = params.append('pagina', pagina);
+  params = params.append('recordsPorPagina', recordsPorPagina);
   return this.http.get<LibroDTO[]>(this.apiURL + 'librosLetra?letra=' + letra ,{observe: 'response', params});
 }
 

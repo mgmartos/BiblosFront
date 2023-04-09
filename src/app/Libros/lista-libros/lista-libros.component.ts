@@ -16,6 +16,12 @@ export class ListaLibrosComponent implements OnInit {
   LibroSeleccionado:LibroDTO;
   LetraActiva :string = '#'
 
+  pagina : number = 1;
+  items : number = 20;
+  totaln : number = 0;
+  total : string;
+
+
   listaLetras:string[] = ["#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
   constructor(public accesoApiService:AccesoApiService,private confirmDialogService: ConfirmDialogService) { }
 
@@ -24,10 +30,16 @@ export class ListaLibrosComponent implements OnInit {
   }
 
   pinchaLetra(letra:string){
-
+    if (this.LetraActiva != letra)
+    {
+      this.pagina = 1;
+    }
     this.LetraActiva = letra;
-    this.accesoApiService.getLibrosLetra(letra).subscribe((respuesta:HttpResponse<LibroDTO[]>) => {
+    this.accesoApiService.getLibrosLetra(String(this.pagina),String(this.items),letra).subscribe((respuesta:HttpResponse<LibroDTO[]>) => {
       this.resultadoLibros = respuesta.body;
+      this.total = respuesta.headers.get("cantidadTotalRegistros");
+      this.totaln = Number(this.total);
+      console.log("Total " + this.total);
       console.log('-->  ' + letra);
       this.resultadoLibros = MapLibros(this.resultadoLibros);
     },error => console.log(error));
@@ -79,5 +91,13 @@ export class ListaLibrosComponent implements OnInit {
       alert("No clicked");  
     })  
    }
+
+   pageChanged(men:any){
+    console.log("Paginando " + men);
+    this.pagina = Number(men);
+    this.pinchaLetra(this.LetraActiva);
+  }
+
+
 
 }

@@ -19,6 +19,8 @@ import {ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
 import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.component';
 import { LibrosautorComponent } from './Libros/librosautor/librosautor.component';
 import { LibrosComponent } from './Libros/libros/libros.component';
+import { ListalibrosComponent } from './Libros/listalibros/listalibros.component';
+import { ListaEditorialesComponent } from './Editoriales/lista-editoriales/lista-editoriales.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { LibrosComponent } from './Libros/libros/libros.component';
     BuscalibrosComponent,
     LibrosautorComponent,
     LibrosComponent,
+    ListalibrosComponent,
+    ListaEditorialesComponent,
   ],
   imports: [
     BrowserModule,

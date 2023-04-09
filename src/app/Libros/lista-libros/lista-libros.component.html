@@ -35,7 +35,7 @@
                     <th style="width:2.00%"></th>
 
                 </tr>
-                    <tr *ngFor="let libro of resultadoLibros ; let index=index"
+                    <tr *ngFor="let libro of resultadoLibros | paginate: { itemsPerPage: items, currentPage: pagina, totalItems: total}; let index=index"
                     [ngClass]="index %2 == 0 ? 'impares' : 'pares'" >
                         <td>{{libro.id}}</td>
                         <td>{{libro.titulo}}</td>
@@ -52,6 +52,10 @@
                     </tr>
             </table>
             </div>
+            <div *ngIf="totaln > items">
+                <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Siguiente" class="paginationRed"></pagination-controls>
+                </div>
+
         </div>
     </div>
 
