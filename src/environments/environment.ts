@@ -7,9 +7,15 @@ export const environment = {
     /*apiURL: 'https://apimanagementbiblos.azure-api.net/v1/api/Libros/'
   'https://wapibiblos120210713083254.azurewebsites.net/api/Libros/'
     apiURL: 'https://localhost:44321/api/Libros/' 
+<<<<<<< HEAD
     apiURL: 'https://biblosapimanagement.azure-api.net/v1/api/Libros/'
     apiURL: 'https://wapibiblos2.azurewebsites.net/api/libros/'*/
     apiURL: 'https://wapibibloscore.azurewebsites.net/api/libros/'
+=======
+    apiURL: 'https://biblosapimanagement.azure-api.net/v1/api/Libros/'*/
+    apiURL: 'https://apimanagemengmgm.azure-api.net/v1/api/Libros/'
+
+>>>>>>> 896c4c9b6e44279b388096d56b85c898c484d73e
 };
 
 /*
@@ -20,4 +26,5 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
 
