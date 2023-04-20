@@ -9,6 +9,7 @@ import { ListaTemasComponent } from './Temas/lista-temas/lista-temas.component';
 import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.component';
 import { LibrosComponent } from './Libros/libros/libros.component';
 import {ListaEditorialesComponent} from './Editoriales/lista-editoriales/lista-editoriales.component';
+import { ListaLecturasComponent } from './Lecturas/lista-lecturas/lista-lecturas.component';
 
 const routes: Routes = [
       {path:'inicio',component:InicioComponent},
@@ -16,13 +17,13 @@ const routes: Routes = [
       {path:'librostot',component:LibrosComponent},
       {path:'autores',component:ListaAutoresComponent},
       {path:'autor',component:AutorComponent},      
+      {path:'lecturas',component:ListaLecturasComponent},      
       {path:'buscar',component:BuscalibrosComponent},
       {path:'libro',component:LibroComponent},
       {path:'temas',component:ListaTemasComponent},
       {path:'editoriales',component:ListaEditorialesComponent},
       {path:'',component:InicioComponent},
       {path:'**',component:InicioComponent}];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

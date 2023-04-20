@@ -7,15 +7,22 @@ export const environment = {
     /*apiURL: 'https://apimanagementbiblos.azure-api.net/v1/api/Libros/'
   'https://wapibiblos120210713083254.azurewebsites.net/api/Libros/'
     apiURL: 'https://localhost:44321/api/Libros/' 
-<<<<<<< HEAD
-    apiURL: 'https://biblosapimanagement.azure-api.net/v1/api/Libros/'
     apiURL: 'https://wapibiblos2.azurewebsites.net/api/libros/'*/
-    apiURL: 'https://wapibibloscore.azurewebsites.net/api/libros/'
-=======
-    apiURL: 'https://biblosapimanagement.azure-api.net/v1/api/Libros/'*/
     apiURL: 'https://apimanagemengmgm.azure-api.net/v1/api/Libros/'
+            // https://apimanagemengmgm.azure-api.net/v1/api/Libros/inicio
 
->>>>>>> 896c4c9b6e44279b388096d56b85c898c484d73e
+
+
+
+
+/* <<<<<<< HEAD
+    apiURL: 'https://biblosapimanagement.azure-api.net/v1/api/Libros/'
+    
+    apiURL: 'https://wapibibloscore.azurewebsites.net/api/libros/'  // funciona ¿Core?
+    apiURL: 'https://biblosapimanagement.azure-api.net/v1/api/Libros/'
+    apiURL: 'https://apimanagemengmgm.azure-api.net/v1/api/Libros/'*/
+
+
 };
 
 /*
@@ -23,7 +30,8 @@ export const environment = {
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *
  * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
+ * on performance if an error is thrown._old
+ * 
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
 

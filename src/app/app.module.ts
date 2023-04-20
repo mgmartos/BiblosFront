@@ -21,6 +21,8 @@ import { LibrosautorComponent } from './Libros/librosautor/librosautor.component
 import { LibrosComponent } from './Libros/libros/libros.component';
 import { ListalibrosComponent } from './Libros/listalibros/listalibros.component';
 import { ListaEditorialesComponent } from './Editoriales/lista-editoriales/lista-editoriales.component';
+import { ListaLecturasComponent } from './Lecturas/lista-lecturas/lista-lecturas.component';
+
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { ListaEditorialesComponent } from './Editoriales/lista-editoriales/lista
     LibrosComponent,
     ListalibrosComponent,
     ListaEditorialesComponent,
+    ListaLecturasComponent,
   ],
   imports: [
     BrowserModule,

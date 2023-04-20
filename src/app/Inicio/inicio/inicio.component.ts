@@ -14,6 +14,7 @@ export class InicioComponent implements OnInit {
   NumLibros:string = "";
   NumAutores:string = "";
   Numeditoriales:string = "";
+  Numlecturas:string = "";
 
   constructor(public accesoApiService:AccesoApiService ) {
 
@@ -32,7 +33,8 @@ export class InicioComponent implements OnInit {
     this.accesoApiService.getTodos().subscribe((respuesta:HttpResponse<string[]>) => {
       this.resultadoPeticion = respuesta.body; 
       this.NumLibros=this.resultadoPeticion[2];
-      this.NumAutores = this.resultadoPeticion[0];
+      this.NumAutores = this.resultadoPeticion[0];      
+      this.Numlecturas = this.resultadoPeticion[3];
       this.Numeditoriales = this.resultadoPeticion[1];},
       error => console.log(error));
 

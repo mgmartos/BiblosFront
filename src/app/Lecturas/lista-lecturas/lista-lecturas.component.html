@@ -1,0 +1,40 @@
+<div style="margin-top: 1rem;">
+    <fieldset>
+        <legend>Libros</legend>
+    </fieldset> 
+    <div *ngIf="!lecturas">
+        <img src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" />
+    </div>
+
+        <div *ngIf="numlecturas > 0">
+        <table id="tLecturas" style="width:100%; border:thin; margin-bottom:5px;margin-top:5px" align="left">
+            <tr>
+                <th style="width:20.00%">Titulo</th>
+                <th style="width:15.00%">Autor</th>                
+                <th style="width:5.00%">Fecha</th>
+                <th style="width:5.00%">Calificación</th>
+                <th style="width:5.00%">Paginas</th>
+                <th style="width:48.00%">Comentario</th>
+               
+                       <th style="width:2.00%"></th>
+              <!--    <th style="width:2.00%"></th> -->
+            </tr>
+            <tr *ngFor="let lectura of lecturas ; let index=index"
+            [ngClass]="index %2 == 0 ? 'impares' : 'pares'" >
+            <td>{{lectura.titulo}}</td>
+            <td>{{lectura.autor}}</td>
+            <td>{{lectura.fecha | date:'dd/MM/yyyy'}}</td>
+            <td>{{lectura.calificacion}}</td>
+            <td>{{lectura.paginas}}</td>
+            <td >{{lectura.comentario}}</td>
+            <td><i class="fa fa-question fa-1x cursor" (click)="showDialog('Realmente quiere ver el libro ',lectura.titulo)"></i></td>
+              <!--  <td><i class="fas fa-eraser fa-1x cursor" (click)="showDialog('Realmente quiere borrar el Libro ' + lectura.titulo)"></i></td>-->
+
+            </tr>
+            </table>
+    </div>
+</div> 
+<div><app-confirm-dialog></app-confirm-dialog>  </div>
+
+
+

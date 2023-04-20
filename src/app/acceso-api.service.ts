@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 
 import { environment } from 'src/environments/environment';
 import { AutorCrearDTO, AutorDTO, EditorialDTO, LibroDTO,LibroCrearDTO, TemaDTO } from './Libros/LibroDTO';
+import { LecturaDTO } from './Lecturas/lecturasDTO';
+
 
 @Injectable({
   providedIn: 'root'
@@ -167,5 +169,21 @@ private construirFormDataAutor(autor: AutorCrearDTO): FormData {
   formData.append('apellidos', autor.apellidos)
   return formData;
 }
+
+ //    Lecturas
+getLecturas(): Observable<any>{
+  let params = new HttpParams();
+  
+  return this.http.get<LecturaDTO[]>(this.apiURL + 'lecturas',{observe: 'response', params});
+}
+
+altaLectura(lectura:LecturaDTO){
+  let body = JSON.stringify(lectura);            
+  const headers = new HttpHeaders('Content-Type: application/json');
+  return this.http.put(`${this.apiURL}altalect`, body, {headers:headers});     
+  } 
+
+
+
 
 }
