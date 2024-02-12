@@ -10,6 +10,7 @@ import { BuscalibrosComponent } from './Busquedas/buscalibros/buscalibros.compon
 import { LibrosComponent } from './Libros/libros/libros.component';
 import {ListaEditorialesComponent} from './Editoriales/lista-editoriales/lista-editoriales.component';
 import { ListaLecturasComponent } from './Lecturas/lista-lecturas/lista-lecturas.component';
+import { LecturaComponent } from './Lecturas/lectura/lectura.component';
 
 const routes: Routes = [
       {path:'inicio',component:InicioComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
       {path:'libro',component:LibroComponent},
       {path:'temas',component:ListaTemasComponent},
       {path:'editoriales',component:ListaEditorialesComponent},
+      {path:'lectura',component:LecturaComponent},
       {path:'',component:InicioComponent},
       {path:'**',component:InicioComponent}];
 @NgModule({

@@ -1,0 +1,105 @@
+<div class="container p-4 mx-3 marco " style="width: 100%;">
+    <form (submit)="onSubmit()"   [formGroup]="form">
+        <div class="form-group">
+            <label for="Titulo">Título</label>
+            <input type="text"  formControlName="Titulo" class="form-control">
+            <div *ngIf="form.get('nombre').errors && form.get('Titulo').dirty">
+                <p *ngIf="form.get('Titulo').hasError('required')">Campo requerido</p>
+                <p *ngIf="form.get('Titulo').hasError('minlength')">Mínimo 3 caracteres</p>
+            </div>
+        </div> 
+        <div>
+            <p>{{form.get('Titulo')}}</p>
+        </div>
+        <div class="horizont">
+            <div class="form-group">
+                <label for="Autor">Autor</label>
+                <input type="text" formControlName="Autor" class="form-control">
+                <div *ngIf="form.get('Autor').errors && form.get('Autor').dirty">
+                    <p *ngIf="form.get('Autor').hasError('required')">Campo requerido</p>
+                    <p *ngIf="form.get('Autor').hasError('minlength')">Mínimo 3 caracteres</p>
+                </div>
+            </div>  <p>-{{numautores}}-</p>
+            <div>
+                <div style="margin-top: 5px;">
+                  
+                    <select  name="Selección Autor" formControlName="SelectAutor" 
+                    (change)="onSelectedAutor($event)">
+                        <option>Seleccionar</option>ngForm
+                        <option  *ngFor="let autor of autores" [ngValue]="Autor">{{autor.nombreAutor}}</option>
+                    </select>
+
+                    <!-- <div *ngIf="autores" class="col-xs-5 col-sm-5 col-md-5">
+                        <div  class="col-xs-5 col-sm-5 col-md-5">
+                            <select  [(ngModel)]="opcionSeleccionado" (change)="capturar()" formControlName="selectautor" style="width: 100%; ">
+                            <option *ngFor="let autor of autores; let index=index"  value={{autor.id}}  >{{autor.nombreAutor}}</option>
+                        </select>
+                    </div> -->
+
+
+
+                </div>
+            </div>
+        </div>
+
+       <!--  <div class="horizont">
+            <div  class="form-group  col-xs-6 col-sm-6 col-md-6 " >
+                <label for="autor">Autor</label>
+                <input type="text"  formControlName="autor" class="form-control" (ngModelChange)="NomenclatorAutor()">
+            </div>
+            <div *ngIf="autores" class="col-xs-5 col-sm-5 col-md-5">
+                <select  [(ngModel)]="opcionSeleccionado" (change)="capturar()" formControlName="selectautor" style="width: 100%; ">
+                    <option *ngFor="let autor of autores; let index=index"  value={{autor.id}}  >{{autor.nombreAutor}}</option>
+                </select>
+            </div>
+             <div class="col-xs-1 col-sm-1 col-md-1">
+                <button type="button" class="btn btn-primary btn-sm" >Nuevo</button>
+            </div> 
+        </div> -->
+
+
+
+
+        <div class="horizont">
+            <div class="form-group">
+                <label for="FechaInicio">Inicio </label>
+                <input type="date" class="form-control" formControlName="FechaInicio" value="{{hoy}}" (change)="CogerFecha($event)">
+            </div>
+            <div class="form-group">
+                <label for="Fecha">Finalización </label>
+                <input type="date" class="form-control" formControlName="Fecha" value = "{{hoy2}}" (change)="CogerFechaFin($event)">
+            </div>
+        </div>
+        <div class="horizont">
+            <div class="form-group">
+                <label for="Calificacion">Calificación</label>
+                <input type="number" class="form-control" formControlName="Calificacion">
+            </div>
+            <div class="form-group" style="margin: 10px 10px 0px 0px;">
+                <label for="Calificacion">Calificación</label>
+                <input type="number" class="form-control" formControlName="Calificacion">
+            </div>
+            <div class="form-group" style="margin: 10px 10px 0px 0px;">
+                <label for="Ebook">EBook</label>
+                <input type="checkbox" class="form-control" formControlName="Ebook"
+               checked = "true"  >
+            </div>
+        </div>
+        <div>
+            <div class="form-group">
+                <label for="Comentario">Comentario</label>
+                <input type="text" formControlName="Comentario" class="form-control">
+            </div>
+        </div>
+
+   </form>
+   <div *ngIf="form.valid"> 
+    <button type="submit" class="btn btn-primary m-x-2" >Enviar</button>
+    </div>  
+
+ <div>
+ {{Lectura | json}} 
+</div> 
+
+
+</div>

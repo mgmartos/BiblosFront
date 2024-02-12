@@ -4,23 +4,12 @@
 
 export const environment = {
   production: false,
-    /*apiURL: 'https://apimanagementbiblos.azure-api.net/v1/api/Libros/'
-  'https://wapibiblos120210713083254.azurewebsites.net/api/Libros/'
-    apiURL: 'https://localhost:44321/api/Libros/' 
-    apiURL: 'https://wapibiblos2.azurewebsites.net/api/libros/'*/
-    apiURL: 'https://apimanagemengmgm.azure-api.net/v1/api/Libros/'
-            // https://apimanagemengmgm.azure-api.net/v1/api/Libros/inicio
 
 
-
-
-
-/* <<<<<<< HEAD
-    apiURL: 'https://biblosapimanagement.azure-api.net/v1/api/Libros/'
-    
-    apiURL: 'https://wapibibloscore.azurewebsites.net/api/libros/'  // funciona ¿Core?
-    apiURL: 'https://biblosapimanagement.azure-api.net/v1/api/Libros/'
-    apiURL: 'https://apimanagemengmgm.azure-api.net/v1/api/Libros/'*/
+    apiURL: 'https://wapibiblosmgm.azurewebsites.net/api/libros/'
+   
+    //apiURL: 'https://localhost:44321/api/Libros/' 
+   
 
 
 };
@@ -31,6 +20,7 @@ export const environment = {
  *
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown._old
+ * ng serve -o
  * 
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.

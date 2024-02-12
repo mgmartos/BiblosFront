@@ -23,7 +23,8 @@ numlecturas:number;
       this.lecturas = respuesta.body; 
     },
     complete: () => {this.numlecturas = this.lecturas.length},
-      error:() => console.log(Error)}); 
+      error:() => {console.log(Error);
+                  alert(Error.toString())}}); 
   }
 
   SelLectura(titulo:string){

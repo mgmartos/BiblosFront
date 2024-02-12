@@ -22,7 +22,7 @@ import { LibrosComponent } from './Libros/libros/libros.component';
 import { ListalibrosComponent } from './Libros/listalibros/listalibros.component';
 import { ListaEditorialesComponent } from './Editoriales/lista-editoriales/lista-editoriales.component';
 import { ListaLecturasComponent } from './Lecturas/lista-lecturas/lista-lecturas.component';
-
+import { LecturaComponent } from './Lecturas/lectura/lectura.component'
 
 
 @NgModule({
@@ -42,6 +42,7 @@ import { ListaLecturasComponent } from './Lecturas/lista-lecturas/lista-lecturas
     ListalibrosComponent,
     ListaEditorialesComponent,
     ListaLecturasComponent,
+    LecturaComponent,
   ],
   imports: [
     BrowserModule,

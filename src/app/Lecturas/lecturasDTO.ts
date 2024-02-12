@@ -1,4 +1,4 @@
-export interface AutorDTO {
+/* export interface AutorDTO {
     id: number;
     nombreAutor: string;
     nombre: string;
@@ -13,7 +13,7 @@ export interface AutorDTO {
     nombre: string="";
     apellidos: string="";
     fecha : Date = new Date();
-  }
+  } */
 
 
   export interface LecturaDTO {

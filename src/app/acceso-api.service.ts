@@ -21,7 +21,6 @@ export class AccesoApiService {
 
   getAutores(tipo : string): Observable<any>{
       let params = new HttpParams();
-      
       return this.http.get<AutorDTO[]>(this.apiURL + 'autores?tipo=' + tipo ,{observe: 'response', params});
   }
 
@@ -173,7 +172,6 @@ private construirFormDataAutor(autor: AutorCrearDTO): FormData {
  //    Lecturas
 getLecturas(): Observable<any>{
   let params = new HttpParams();
-  
   return this.http.get<LecturaDTO[]>(this.apiURL + 'lecturas',{observe: 'response', params});
 }
 
