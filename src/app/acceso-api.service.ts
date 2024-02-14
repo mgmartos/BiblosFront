@@ -16,7 +16,8 @@ export class AccesoApiService {
 
   getTodos(): Observable<any>{
     let params = new HttpParams();
-    return this.http.get(this.apiURL + 'inicio',{observe: 'response', params});
+    let pp =  this.http.get(this.apiURL + 'inicio',{observe: 'response', params});
+    return pp;
    }
 
   getAutores(tipo : string): Observable<any>{
