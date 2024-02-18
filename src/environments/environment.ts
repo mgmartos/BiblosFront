@@ -5,22 +5,23 @@
 export const environment = {
   production: false,
 
+  apiURL_api: 'https://apimanagementbiblos.azure-api.net/',
 
-    apiURL: 'https://wapibiblosmgm.azurewebsites.net/api/libros/'
+    apiURL: 'https://wapibiblosmgm.azurewebsites.net/api/libros/',
+    apiURL2: 'https://wapibiblosmgm.scm.azurewebsites.net/api/libros/',
+    
+    apiURLLocal: 'https://localhost:44321/api/Libros/' 
    
-    //apiURL: 'https://localhost:44321/api/Libros/' 
-   
 
 
-};
-
+}
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown._old
- * ng serve -o
+ * 
  * 
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.

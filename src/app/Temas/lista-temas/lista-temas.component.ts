@@ -67,10 +67,10 @@ export class ListaTemasComponent implements OnInit {
   {
    console.log('En showDialog ' + mensaje + '  ' + Number(id));
    this.confirmDialogService.confirmThis(mensaje, function () {  
-     alert("Si clicked");  
+     //alert("Si clicked");  
     // accesoApiService.borrarautor(id).subscribe(() =>  console.log('Borrado'));
    }, function () {  
-     alert("No clicked");  
+     //alert("No clicked");  
    })  
   } 
 }

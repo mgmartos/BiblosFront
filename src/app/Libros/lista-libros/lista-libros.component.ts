@@ -41,6 +41,8 @@ export class ListaLibrosComponent implements OnInit {
       this.totaln = Number(this.total);
       console.log("Total " + this.total);
       console.log('-->  ' + letra);
+      // alert("Total " + this.total);
+      // alert('-->  ' + letra);
       this.resultadoLibros = MapLibros(this.resultadoLibros);
     },error => console.log(error));
 
@@ -85,16 +87,17 @@ export class ListaLibrosComponent implements OnInit {
    {
     console.log('En showDialog ' + mensaje + '  ' + Number(id));
     this.confirmDialogService.confirmThis(mensaje, function () {  
-      alert("Si clicked");  
+      //alert("Si clicked");  
      // accesoApiService.borrarautor(id).subscribe(() =>  console.log('Borrado'));
     }, function () {  
-      alert("No clicked");  
+     // alert("No clicked");  
     })  
    }
 
    pageChanged(men:any){
     console.log("Paginando " + men);
     this.pagina = Number(men);
+    //alert("Paginando " + men)
     this.pinchaLetra(this.LetraActiva);
   }
 

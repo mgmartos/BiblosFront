@@ -460,7 +460,7 @@ var Button = function ($) {
 
     Button._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY);
+        var data = $(this).data(DATA_KEY); 
 
         if (!data) {
           data = new Button(this);

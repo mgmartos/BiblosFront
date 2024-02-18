@@ -15,6 +15,8 @@ export class AccesoApiService {
   constructor(private http: HttpClient) { }
 
   getTodos(): Observable<any>{
+    const headers = new HttpHeaders('Ocp-Apim-Subscription-Key:');
+    
     let params = new HttpParams();
     let pp =  this.http.get(this.apiURL + 'inicio',{observe: 'response', params});
     return pp;

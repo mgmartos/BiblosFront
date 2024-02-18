@@ -23,7 +23,9 @@ export class LibrosComponent implements OnInit {
 
   pageChanged(men:any){
     console.log("Paginando " + men);
+  
     this.pagina = Number(men);
+   // alert("Paginando " + men);
     this.PedirPagina();
   }
 
@@ -33,6 +35,7 @@ export class LibrosComponent implements OnInit {
       this.resultadoLibros = MapLibros(this.resultadoLibros);
       this.total = respuesta.headers.get("cantidadTotalRegistros");
       console.log("Total " + this.total);
+      //alert("Total " + this.total);
     },error => console.log(error));
   }
 
