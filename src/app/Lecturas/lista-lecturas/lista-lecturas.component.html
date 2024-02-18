@@ -19,7 +19,7 @@
                        <th style="width:2.00%"></th>
               <!--    <th style="width:2.00%"></th> -->
             </tr>
-            <tr *ngFor="let lectura of lecturas ; let index=index"
+            <tr *ngFor="let lectura of lecturas | paginate: { itemsPerPage: items, currentPage: pagina, totalItems: total}; let index=index"
             [ngClass]="index %2 == 0 ? 'impares' : 'pares'" >
             <td>{{lectura.titulo}}</td>
             <td>{{lectura.autor}}</td>
@@ -32,9 +32,12 @@
 
             </tr>
             </table>
-    </div>
+            <div *ngIf="totaln > items">
+                <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Siguiente" class="paginationRed"></pagination-controls>
+            </div>  
+        </div>
 </div> 
-<div><app-confirm-dialog></app-confirm-dialog>  </div>
 
+<!-- <div><app-confirm-dialog></app-confirm-dialog></div> -->
 
 

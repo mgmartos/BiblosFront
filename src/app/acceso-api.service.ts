@@ -78,6 +78,14 @@ getLibrosLetra(pagina:string, recordsPorPagina:string,letra:string): Observable<
   return this.http.get<LibroDTO[]>(this.apiURL + 'librosLetra?letra=' + letra ,{observe: 'response', params});
 }
 
+ //    Lecturas
+ getLecturas(pagina:string, recordsPorPagina:string): Observable<any>{
+  let params = new HttpParams();
+  params = params.append('pagina', pagina);
+  params = params.append('recordsPorPagina', recordsPorPagina);
+  return this.http.get<LecturaDTO[]>(this.apiURL + 'lecturas',{observe: 'response', params});
+}
+
 getLibrosNomenclator (semilla:string): Observable<any>{
 
   let params = new HttpParams();
@@ -172,11 +180,7 @@ private construirFormDataAutor(autor: AutorCrearDTO): FormData {
   return formData;
 }
 
- //    Lecturas
-getLecturas(): Observable<any>{
-  let params = new HttpParams();
-  return this.http.get<LecturaDTO[]>(this.apiURL + 'lecturas',{observe: 'response', params});
-}
+
 
 altaLectura(lectura:LecturaDTO){
   let body = JSON.stringify(lectura);            

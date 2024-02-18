@@ -11,6 +11,7 @@ import { LibroDTO, TemaDTO } from '../LibroDTO';
   styleUrls: ['./lista-libros.component.css']
 })
 export class ListaLibrosComponent implements OnInit {
+  _servicio_api : AccesoApiService;
   resultadoLibros:LibroDTO[];
   Libros:any[];
   LibroSeleccionado:LibroDTO;

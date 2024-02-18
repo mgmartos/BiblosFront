@@ -5,12 +5,10 @@
 export const environment = {
   production: false,
 
+  apiURL: 'https://wapibiblosmgm.azurewebsites.net/api/libros/',
   apiURL_api: 'https://apimanagementbiblos.azure-api.net/',
-
-    apiURL: 'https://wapibiblosmgm.azurewebsites.net/api/libros/',
-    apiURL2: 'https://wapibiblosmgm.scm.azurewebsites.net/api/libros/',
-    
-    apiURLLocal: 'https://localhost:44321/api/Libros/' 
+  apiURL2: 'https://wapibiblosmgm.scm.azurewebsites.net/api/libros/', 
+  apiURLLocal: 'https://localhost:44321/api/Libros/' 
    
 
 
